@@ -1,0 +1,10 @@
+<h1>Página Inicial</h1>
+
+<% if logged_in? %>
+  <div class="alert alert-info">
+    Bem-vindo(a), <%= current_user.email %>! Você está logado.
+  </div>
+  <!-- Aqui você pode exibir mais informações ou funcionalidades exclusivas -->
+<% else %>
+  <p>Faça login para acessar mais recursos.</p>
+<% end %>

@@ -61,3 +61,6 @@ group :test do
   gem "capybara"
   gem "selenium-webdriver"
 end
+
+# pra tratar senhas de forma segura
+gem 'bcrypt', '~> 3.1.7'
