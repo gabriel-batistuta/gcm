@@ -1,3 +1,4 @@
+<!-- app/views/sessions/new.html.erb -->
 <div class="container">
   <div class="row justify-content-center">
     <div class="col-md-5">
@@ -19,6 +20,9 @@
               <%= form.submit "Entrar", class: "btn btn-success" %>
             </div>
           <% end %>
+          <div class="text-center mt-3">
+            <%= link_to "Esqueceu a senha?", password_reset_path %>
+          </div>
         </div>
       </div>
     </div>

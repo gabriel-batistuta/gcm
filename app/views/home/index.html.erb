@@ -1,10 +1,21 @@
-<h1>Página Inicial</h1>
-
-<% if logged_in? %>
-  <div class="alert alert-info">
-    Bem-vindo(a), <%= current_user.email %>! Você está logado.
+<!-- app/views/home/index.html.erb -->
+<div class="container mt-5">
+  <div class="jumbotron p-5 mb-4 bg-light rounded-3">
+    <div class="container-fluid py-5">
+      <h1 class="display-5 fw-bold">Bem-vindo(a) ao Nosso Sistema!</h1>
+      <p class="col-md-8 fs-4">Gerencie suas tarefas e informações de forma segura e eficiente.</p>
+      <% if logged_in? %>
+        <p class="lead">Olá, <%= current_user.email %>! Você está logado.</p>
+        <div>
+          <%= button_to "Sair", logout_path, method: :delete, class: "btn btn-danger btn-lg" %>
+        </div>
+      <% else %>
+        <p class="lead">Para aproveitar todas as funcionalidades, faça login ou cadastre-se.</p>
+        <div>
+          <a href="<%= login_path %>" class="btn btn-primary btn-lg me-2">Entrar</a>
+          <a href="<%= signup_path %>" class="btn btn-success btn-lg">Cadastrar</a>
+        </div>
+      <% end %>
+    </div>
   </div>
-  <!-- Aqui você pode exibir mais informações ou funcionalidades exclusivas -->
-<% else %>
-  <p>Faça login para acessar mais recursos.</p>
-<% end %>
+</div>

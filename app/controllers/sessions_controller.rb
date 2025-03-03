@@ -1,3 +1,4 @@
+# app/controllers/sessions_controller.rb
 class SessionsController < ApplicationController
   def new
     # Renderiza o formulário de login
@@ -8,7 +9,12 @@ class SessionsController < ApplicationController
     if user && user.authenticate(params[:password])
       session[:user_id] = user.id
       flash[:notice] = "Login realizado com sucesso!"
-      redirect_to root_path
+      if user.temporary
+        flash[:alert] = "Por favor, altere sua senha provisória."
+        redirect_to edit_password_path
+      else
+        redirect_to root_path
+      end
     else
       flash.now[:alert] = "Email ou senha inválidos."
       render :new
