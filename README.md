@@ -1,5 +1,6 @@
 # README
 
+Usuários de teste
 ```
 adm:
 admin@exemplo.com
@@ -10,25 +11,14 @@ usuario@exemplo.com
 senha123
 ```
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
-
-Things you may want to cover:
-
-* Ruby version
-
-* System dependencies
-
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+# configurar mailer em app/config/environments/[development | production] or :
+config.action_mailer.delivery_method = :smtp
+  config.action_mailer.smtp_settings = {
+    address:              'smtp.gmail.com',
+    port:                 587,
+    domain:               'google.com', # email domain
+    user_name:            'hyoudouissei047@gmail.com',     # email real
+    password:             'wjbr bvky bbcp iock',               # senha de app
+    authentication:       'plain',
+    enable_starttls_auto: true
+}

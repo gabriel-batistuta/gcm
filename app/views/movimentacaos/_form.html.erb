@@ -1,0 +1,72 @@
+<%= form_with(model: movimentacao) do |form| %>
+  <% if movimentacao.errors.any? %>
+    <div style="color: red">
+      <h2><%= pluralize(movimentacao.errors.count, "error") %> prohibited this movimentacao from being saved:</h2>
+
+      <ul>
+        <% movimentacao.errors.each do |error| %>
+          <li><%= error.full_message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div>
+    <%= form.label :armeiro, style: "display: block" %>
+    <%= form.text_field :armeiro %>
+  </div>
+
+  <div>
+    <%= form.label :matricula_armeiro, style: "display: block" %>
+    <%= form.text_field :matricula_armeiro %>
+  </div>
+
+  <div>
+    <%= form.label :data, style: "display: block" %>
+    <%= form.date_field :data %>
+  </div>
+
+  <div>
+    <%= form.label :hora, style: "display: block" %>
+    <%= form.time_field :hora %>
+  </div>
+
+  <div>
+    <%= form.label :tipo, style: "display: block" %>
+    <%= form.text_field :tipo %>
+  </div>
+
+  <div>
+    <%= form.label :arma_id, style: "display: block" %>
+    <%= form.text_field :arma_id %>
+  </div>
+
+  <div>
+    <%= form.label :quantidade_balas, style: "display: block" %>
+    <%= form.number_field :quantidade_balas %>
+  </div>
+
+  <div>
+    <%= form.label :calibre_municao, style: "display: block" %>
+    <%= form.text_field :calibre_municao %>
+  </div>
+
+  <div>
+    <%= form.label :quantidade_carregadores, style: "display: block" %>
+    <%= form.number_field :quantidade_carregadores %>
+  </div>
+
+  <div>
+    <%= form.label :guarda_id, style: "display: block" %>
+    <%= form.text_field :guarda_id %>
+  </div>
+
+  <div>
+    <%= form.label :justificativa, style: "display: block" %>
+    <%= form.textarea :justificativa %>
+  </div>
+
+  <div>
+    <%= form.submit %>
+  </div>
+<% end %>

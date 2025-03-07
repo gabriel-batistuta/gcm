@@ -1,4 +1,10 @@
 Rails.application.routes.draw do
+  resources :movimentacaos
+  resources :armas
+  resources :guardas
+  resources :equipes
+  resources :unidades
+  resources :password_resets, only: [:new, :create, :edit, :update]
   root "home#index"
 
   # Sessões (login/logout)

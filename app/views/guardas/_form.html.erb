@@ -1,0 +1,37 @@
+<%= form_with(model: guarda) do |form| %>
+  <% if guarda.errors.any? %>
+    <div style="color: red">
+      <h2><%= pluralize(guarda.errors.count, "error") %> prohibited this guarda from being saved:</h2>
+
+      <ul>
+        <% guarda.errors.each do |error| %>
+          <li><%= error.full_message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div>
+    <%= form.label :nome_completo, style: "display: block" %>
+    <%= form.text_field :nome_completo %>
+  </div>
+
+  <div>
+    <%= form.label :matricula, style: "display: block" %>
+    <%= form.text_field :matricula %>
+  </div>
+
+  <div>
+    <%= form.label :numeracao_porte, style: "display: block" %>
+    <%= form.text_field :numeracao_porte %>
+  </div>
+
+  <div>
+    <%= form.label :equipe_id, style: "display: block" %>
+    <%= form.text_field :equipe_id %>
+  </div>
+
+  <div>
+    <%= form.submit %>
+  </div>
+<% end %>
