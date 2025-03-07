@@ -1,8 +1,7 @@
-<%= form_with(model: unidade) do |form| %>
+<%= form_with(model: unidade, class: "form-container") do |form| %>
   <% if unidade.errors.any? %>
-    <div style="color: red">
-      <h2><%= pluralize(unidade.errors.count, "error") %> prohibited this unidade from being saved:</h2>
-
+    <div class="form-errors">
+      <h2><%= pluralize(unidade.errors.count, "error") %> prevented saving this unidade:</h2>
       <ul>
         <% unidade.errors.each do |error| %>
           <li><%= error.full_message %></li>
@@ -11,12 +10,12 @@
     </div>
   <% end %>
 
-  <div>
-    <%= form.label :nome, style: "display: block" %>
-    <%= form.text_field :nome %>
+  <div class="form-group">
+    <%= form.label :nome, class: "form-label" %>
+    <%= form.text_field :nome, class: "form-input" %>
   </div>
 
-  <div>
-    <%= form.submit %>
+  <div class="form-actions">
+    <%= form.submit "Salvar", class: "form-button" %>
   </div>
 <% end %>
