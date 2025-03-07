@@ -1,21 +1,61 @@
 <!-- app/views/home/index.html.erb -->
 <div class="container mt-5">
-  <div class="jumbotron p-5 mb-4 bg-light rounded-3">
-    <div class="container-fluid py-5">
-      <h1 class="display-5 fw-bold">Bem-vindo(a) ao Nosso Sistema!</h1>
-      <p class="col-md-8 fs-4">Gerencie suas tarefas e informações de forma segura e eficiente.</p>
-      <% if logged_in? %>
-        <p class="lead">Olá, <%= current_user.email %>! Você está logado.</p>
-        <div>
-          <%= button_to "Sair", logout_path, method: :delete, class: "btn btn-danger btn-lg" %>
+  <div class="jumbotron p-5 mb-4 bg-light rounded-3 text-center">
+    <h1 class="display-4 fw-bold">Bem-vindo(a) ao Sistema de Gestão</h1>
+    <p class="lead">Gerencie unidades, guardas, equipes, armas e movimentações de forma eficiente.</p>
+  </div>
+  
+  <div class="row">
+    <div class="col-md-4">
+      <div class="card shadow-sm">
+        <div class="card-body text-center">
+          <h5 class="card-title">CRUD de Unidades</h5>
+          <p class="card-text">Gerencie unidades de segurança.</p>
+          <a href="<%= unidades_path %>" class="btn btn-primary">Acessar</a>
         </div>
-      <% else %>
-        <p class="lead">Para aproveitar todas as funcionalidades, faça login ou cadastre-se.</p>
-        <div>
-          <a href="<%= login_path %>" class="btn btn-primary btn-lg me-2">Entrar</a>
-          <a href="<%= signup_path %>" class="btn btn-success btn-lg">Cadastrar</a>
+      </div>
+    </div>
+    
+    <div class="col-md-4">
+      <div class="card shadow-sm">
+        <div class="card-body text-center">
+          <h5 class="card-title">CRUD de Guardas</h5>
+          <p class="card-text">Controle os guardas do sistema.</p>
+          <a href="<%= guardas_path %>" class="btn btn-primary">Acessar</a>
         </div>
-      <% end %>
+      </div>
+    </div>
+    
+    <div class="col-md-4">
+      <div class="card shadow-sm">
+        <div class="card-body text-center">
+          <h5 class="card-title">CRUD de Equipes</h5>
+          <p class="card-text">Administre as equipes de segurança.</p>
+          <a href="<%= equipes_path %>" class="btn btn-primary">Acessar</a>
+        </div>
+      </div>
+    </div>
+  </div>
+  
+  <div class="row mt-4">
+    <div class="col-md-6">
+      <div class="card shadow-sm">
+        <div class="card-body text-center">
+          <h5 class="card-title">CRUD de Armas</h5>
+          <p class="card-text">Gerencie o armamento disponível.</p>
+          <a href="<%= armas_path %>" class="btn btn-primary">Acessar</a>
+        </div>
+      </div>
+    </div>
+    
+    <div class="col-md-6">
+      <div class="card shadow-sm">
+        <div class="card-body text-center">
+          <h5 class="card-title">Gerenciamento de Movimentações</h5>
+          <p class="card-text">Acompanhe todas as movimentações.</p>
+          <a href="<%= movimentacaos_path %>" class="btn btn-primary">Acessar</a>
+        </div>
+      </div>
     </div>
   </div>
 </div>

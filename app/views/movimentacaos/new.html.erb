@@ -1,11 +1,13 @@
 <% content_for :title, "New movimentacao" %>
 
-<h1>New movimentacao</h1>
+<div class="movimentacoes-container">
+  <h1>New movimentacao</h1>
 
-<%= render "form", movimentacao: @movimentacao %>
+  <div class="movimentacao-card">
+    <%= render "form", movimentacao: @movimentacao %>
+  </div>
 
-<br>
-
-<div>
-  <%= link_to "Back to movimentacaos", movimentacaos_path %>
+  <div class="movimentacao-links">
+    <%= link_to "Voltar para movimentacao", movimentacaos_path, class: "btn btn-secondary" %>
+  </div>
 </div>

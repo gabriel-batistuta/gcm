@@ -8,7 +8,7 @@ class SessionsController < ApplicationController
     user = User.find_by(email: params[:email])
     if user && user.authenticate(params[:password])
       session[:user_id] = user.id
-      flash[:notice] = "Login realizado com sucesso!"
+      # flash[:notice] = "Login realizado com sucesso!"
       if user.temporary
         flash[:alert] = "Por favor, altere sua senha provisória."
         redirect_to edit_password_path

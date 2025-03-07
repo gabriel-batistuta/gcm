@@ -1,16 +1,20 @@
-<p style="color: green"><%= notice %></p>
-
 <% content_for :title, "Movimentacaos" %>
 
 <h1>Movimentacaos</h1>
 
-<div id="movimentacaos">
+<div class="movimentacoes-container">
   <% @movimentacaos.each do |movimentacao| %>
-    <%= render movimentacao %>
-    <p>
-      <%= link_to "Show this movimentacao", movimentacao %>
-    </p>
+    <div class="movimentacao-card">
+      <div class="movimentacao-header">
+        <%= render movimentacao %>
+      </div>
+      <div class="movimentacao-links">
+        <p>
+          <%= link_to "Show this movimentacao", movimentacao, class: "btn btn-primary" %>
+        </p>
+      </div>
+    </div>
   <% end %>
 </div>
 
-<%= link_to "New movimentacao", new_movimentacao_path %>
+<%= link_to "Nova movimentação", new_movimentacao_path, class: "btn btn-success" %>
