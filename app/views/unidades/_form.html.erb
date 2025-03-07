@@ -3,16 +3,16 @@
     <div class="form-errors">
       <h2><%= pluralize(unidade.errors.count, "error") %> prevented saving this unidade:</h2>
       <ul>
-        <% unidade.errors.each do |error| %>
-          <li><%= error.full_message %></li>
+        <% unidade.errors.full_messages.each do |msg| %>
+          <li><%= msg %></li>
         <% end %>
       </ul>
     </div>
   <% end %>
 
-  <div class="form-group">
+  <div class="form-group" id="form_unidade_nome">
     <%= form.label :nome, class: "form-label" %>
-    <%= form.text_field :nome, class: "form-input" %>
+    <%= form.text_field :nome, class: "form-input", id: "input-text-unidades" %>
   </div>
 
   <div class="form-actions">

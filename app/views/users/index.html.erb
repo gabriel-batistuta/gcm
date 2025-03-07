@@ -1,0 +1,43 @@
+<h1>Lista de Usuários</h1>
+
+<table class="table">
+  <thead>
+    <tr>
+      <th>Nome</th>
+      <th>Email</th>
+      <th>Administrador</th>
+      <th>Ações</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @users.each do |user| %>
+      <tr>
+        <td><%= user.name %></td>
+        <td><%= user.email %></td>
+        <td>
+          <%= user.admin? ? "Sim" : "Não" %>
+        </td>
+        <td>
+          <% if current_user&.admin? && current_user != user %>
+            <!-- Formulário para atualizar o status de administrador -->
+            <%= form_with model: user, url: user_path(user), method: :patch, local: true do |form| %>
+              <div class="form-check mb-2">
+                <%= form.check_box :admin, class: "form-check-input", checked: user.admin? %>
+                <%= form.label :admin, "Tornar Administrador", class: "form-check-label" %>
+              </div>
+              <%= form.submit "Salvar", class: "btn btn-primary btn-sm" %>
+            <% end %>
+            <!-- Botão para apagar o usuário -->
+            <%= button_to "Apagar", user_path(user), method: :delete, data: { confirm: "Tem certeza que deseja apagar este usuário?" }, class: "btn btn-danger btn-sm mt-2" %>
+          <% end %>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<%= link_to "Novo Usuário", new_user_path, class: "btn btn-success" if current_user&.admin? %>
+
+<div class="voltar-home text-center mt-4">
+  <%= link_to "Voltar para a Home", root_path, class: "btn btn-secondary" %>
+</div>

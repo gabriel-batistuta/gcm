@@ -1,72 +1,99 @@
-<%= form_with(model: movimentacao) do |form| %>
+<%= form_with(model: movimentacao, local: true) do |form| %>
   <% if movimentacao.errors.any? %>
     <div style="color: red">
       <h2><%= pluralize(movimentacao.errors.count, "error") %> prohibited this movimentacao from being saved:</h2>
-
       <ul>
-        <% movimentacao.errors.each do |error| %>
-          <li><%= error.full_message %></li>
+        <% movimentacao.errors.full_messages.each do |msg| %>
+          <li><%= msg %></li>
         <% end %>
       </ul>
     </div>
   <% end %>
 
+  <!-- Select para o Armeiro (Guarda) -->
   <div>
-    <%= form.label :armeiro, style: "display: block" %>
-    <%= form.text_field :armeiro %>
+    <%= form.label :guarda_id, "Armeiro", style: "display: block" %>
+    <%= form.collection_select :guarda_id, Guarda.all, :id, :nome_completo, { prompt: "Selecione o Armeiro" }, { class: "form-input", onchange: "updateMatricula(this)" } %>
   </div>
 
+  <!-- Select para a Matrícula do Armeiro -->
   <div>
-    <%= form.label :matricula_armeiro, style: "display: block" %>
-    <%= form.text_field :matricula_armeiro %>
+    <%= form.label :matricula_armeiro, "Matrícula do Armeiro", style: "display: block" %>
+    <select id="matricula_armeiro_select" name="movimentacao[matricula_armeiro]" class="form-input">
+      <option value="">Selecione o Armeiro primeiro</option>
+    </select>
   </div>
 
   <div>
     <%= form.label :data, style: "display: block" %>
-    <%= form.date_field :data %>
+    <%= form.date_field :data, class: "form-input" %>
   </div>
 
   <div>
     <%= form.label :hora, style: "display: block" %>
-    <%= form.time_field :hora %>
+    <%= form.time_field :hora, class: "form-input" %>
   </div>
 
   <div>
-    <%= form.label :tipo, style: "display: block" %>
-    <%= form.text_field :tipo %>
+    <%= form.label :tipo, "Tipo", style: "display: block" %>
+    <%= form.select :tipo, ["Empréstimo", "Devolução"], {}, class: "form-input" %>
   </div>
 
+
+  <!-- Select para Arma -->
   <div>
-    <%= form.label :arma_id, style: "display: block" %>
-    <%= form.text_field :arma_id %>
+    <%= form.label :arma_id, "Arma", style: "display: block" %>
+    <%= form.collection_select :arma_id, Arma.all, :id, :modelo, { prompt: "Selecione a Arma" }, { class: "form-input" } %>
   </div>
 
   <div>
     <%= form.label :quantidade_balas, style: "display: block" %>
-    <%= form.number_field :quantidade_balas %>
+    <%= form.number_field :quantidade_balas, class: "form-input" %>
   </div>
 
   <div>
     <%= form.label :calibre_municao, style: "display: block" %>
-    <%= form.text_field :calibre_municao %>
+    <%= form.text_field :calibre_municao, class: "form-input" %>
   </div>
 
   <div>
     <%= form.label :quantidade_carregadores, style: "display: block" %>
-    <%= form.number_field :quantidade_carregadores %>
-  </div>
-
-  <div>
-    <%= form.label :guarda_id, style: "display: block" %>
-    <%= form.text_field :guarda_id %>
+    <%= form.number_field :quantidade_carregadores, class: "form-input" %>
   </div>
 
   <div>
     <%= form.label :justificativa, style: "display: block" %>
-    <%= form.textarea :justificativa %>
+    <%= form.text_area :justificativa, class: "form-input" %>
   </div>
 
   <div>
-    <%= form.submit %>
+    <%= form.submit "Salvar", class: "form-button" %>
   </div>
+
+  <!-- Script para atualizar o select de Matrícula do Armeiro -->
+  <script>
+    // Cria um objeto com o mapeamento dos guardas: id => matrícula
+    var guardasMatriculas = {
+      <% Guarda.all.each do |guarda| %>
+        "<%= guarda.id %>": "<%= guarda.matricula %>",
+      <% end %>
+    };
+
+    function updateMatricula(selectElem) {
+      var selectedId = selectElem.value;
+      var matriculaSelect = document.getElementById("matricula_armeiro_select");
+      matriculaSelect.innerHTML = "";
+      if (selectedId && guardasMatriculas[selectedId]) {
+        var option = document.createElement("option");
+        option.value = guardasMatriculas[selectedId];
+        option.text = guardasMatriculas[selectedId];
+        matriculaSelect.appendChild(option);
+      } else {
+        var option = document.createElement("option");
+        option.value = "";
+        option.text = "Selecione o Armeiro primeiro";
+        matriculaSelect.appendChild(option);
+      }
+    }
+  </script>
 <% end %>

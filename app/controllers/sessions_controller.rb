@@ -6,10 +6,12 @@ class SessionsController < ApplicationController
 
   def create
     user = User.find_by(email: params[:email])
+    
     if user && user.authenticate(params[:password])
       session[:user_id] = user.id
-      # flash[:notice] = "Login realizado com sucesso!"
-      if user.temporary
+
+      # Apenas usuários NÃO admin devem trocar a senha provisória
+      if user.temporary && !user.admin?
         flash[:alert] = "Por favor, altere sua senha provisória."
         redirect_to edit_password_path
       else
@@ -23,7 +25,6 @@ class SessionsController < ApplicationController
 
   def destroy
     session[:user_id] = nil
-    flash[:notice] = "Logout efetuado com sucesso."
     redirect_to login_path
   end
 end

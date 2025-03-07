@@ -1,4 +1,4 @@
-<div id="<%= dom_id guarda %>">
+<div id="<%= dom_id(guarda) %>" class="guarda-card">
   <p>
     <strong>Nome completo:</strong>
     <%= guarda.nome_completo %>
@@ -16,7 +16,6 @@
 
   <p>
     <strong>Equipe:</strong>
-    <%= guarda.equipe_id %>
+    <%= guarda.equipe.present? ? guarda.equipe.nome : "Nenhuma" %>
   </p>
-
 </div>

@@ -10,13 +10,14 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.0].define(version: 2025_03_07_164850) do
+ActiveRecord::Schema[8.0].define(version: 2025_03_07_225717) do
   create_table "armas", force: :cascade do |t|
     t.string "modelo"
     t.string "registro"
     t.boolean "emprestada"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "guarda_emprestado_id"
   end
 
   create_table "equipes", force: :cascade do |t|

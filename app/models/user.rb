@@ -14,5 +14,10 @@ class User < ApplicationRecord
     token = SecureRandom.urlsafe_base64
     update!(reset_token: token, reset_sent_at: Time.current)
   end
+
+  # Verifica se o usuário é administrador
+  def admin?
+    self.admin
+  end
 end
   

@@ -1,11 +1,10 @@
-<%= form_with(model: guarda) do |form| %>
+<%= form_with(model: guarda, local: true) do |form| %>
   <% if guarda.errors.any? %>
     <div style="color: red">
       <h2><%= pluralize(guarda.errors.count, "error") %> prohibited this guarda from being saved:</h2>
-
       <ul>
-        <% guarda.errors.each do |error| %>
-          <li><%= error.full_message %></li>
+        <% guarda.errors.full_messages.each do |msg| %>
+          <li><%= msg %></li>
         <% end %>
       </ul>
     </div>
@@ -13,25 +12,25 @@
 
   <div>
     <%= form.label :nome_completo, style: "display: block" %>
-    <%= form.text_field :nome_completo %>
+    <%= form.text_field :nome_completo, class: "form-input" %>
   </div>
 
   <div>
     <%= form.label :matricula, style: "display: block" %>
-    <%= form.text_field :matricula %>
+    <%= form.text_field :matricula, class: "form-input" %>
   </div>
 
   <div>
     <%= form.label :numeracao_porte, style: "display: block" %>
-    <%= form.text_field :numeracao_porte %>
+    <%= form.text_field :numeracao_porte, class: "form-input" %>
   </div>
 
   <div>
     <%= form.label :equipe_id, style: "display: block" %>
-    <%= form.text_field :equipe_id %>
+    <%= form.collection_select :equipe_id, Equipe.all, :id, :nome, { prompt: "Selecione a Equipe" }, { class: "form-input" } %>
   </div>
 
   <div>
-    <%= form.submit %>
+    <%= form.submit "Salvar", class: "form-button" %>
   </div>
 <% end %>

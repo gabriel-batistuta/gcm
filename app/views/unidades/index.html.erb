@@ -4,13 +4,19 @@
 
 <h1 class="unidades-title">Unidades</h1>
 
-<div id="unidades">
+<div id="unidades" class="container">
   <% @unidades.each do |unidade| %>
     <%= render unidade %>
     <p>
-      <%= link_to "Show this unidade", unidade %>
+      <%= link_to "Show this unidade", unidade, class: "btn btn-primary" %>
     </p>
   <% end %>
 </div>
 
-<%= link_to "New unidade", new_unidade_path %>
+<div class="voltar-unidades">
+  <%= link_to "New unidade", new_unidade_path, class: "btn btn-primary" %>
+</div>
+
+<div class="voltar-home text-center mt-4">
+  <%= link_to "Voltar para a Home", root_path, class: "btn btn-secondary" %>
+</div>

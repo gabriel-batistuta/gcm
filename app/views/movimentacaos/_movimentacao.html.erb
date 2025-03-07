@@ -1,11 +1,11 @@
-<div id="<%= dom_id movimentacao %>">
+<div id="<%= dom_id(movimentacao) %>" class="movimentacao-card">
   <p>
     <strong>Armeiro:</strong>
-    <%= movimentacao.armeiro %>
+    <%= movimentacao.guarda.present? ? movimentacao.guarda.nome_completo : "N/A" %>
   </p>
 
   <p>
-    <strong>Matricula armeiro:</strong>
+    <strong>Matrícula Armeiro:</strong>
     <%= movimentacao.matricula_armeiro %>
   </p>
 
@@ -26,32 +26,26 @@
 
   <p>
     <strong>Arma:</strong>
-    <%= movimentacao.arma_id %>
+    <%= movimentacao.arma.present? ? movimentacao.arma.modelo : "N/A" %>
   </p>
 
   <p>
-    <strong>Quantidade balas:</strong>
+    <strong>Quantidade de Balas:</strong>
     <%= movimentacao.quantidade_balas %>
   </p>
 
   <p>
-    <strong>Calibre municao:</strong>
+    <strong>Calibre da Munição:</strong>
     <%= movimentacao.calibre_municao %>
   </p>
 
   <p>
-    <strong>Quantidade carregadores:</strong>
+    <strong>Quantidade de Carregadores:</strong>
     <%= movimentacao.quantidade_carregadores %>
-  </p>
-
-  <p>
-    <strong>Guarda:</strong>
-    <%= movimentacao.guarda_id %>
   </p>
 
   <p>
     <strong>Justificativa:</strong>
     <%= movimentacao.justificativa %>
   </p>
-
 </div>

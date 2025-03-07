@@ -2,9 +2,8 @@
 
 <%= render @unidade %>
 
-<div>
-  <%= link_to "Edit this unidade", edit_unidade_path(@unidade) %> |
-  <%= link_to "Back to unidades", unidades_path %>
-
-  <%= button_to "Destroy this unidade", @unidade, method: :delete %>
+<div class="voltar-unidades">
+  <%= link_to "Edit this unidade", edit_unidade_path(@unidade), class: "btn btn-primary" %> |
+  <%= link_to "Back to unidades", unidades_path, class: "btn btn-primary" %>
+  <%= button_to "Destroy this unidade", @unidade, method: :delete, data: { confirm: "Are you sure?" }, class: "btn btn-danger" %>
 </div>
