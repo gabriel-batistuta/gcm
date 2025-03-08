@@ -14,7 +14,7 @@
     <p class="lead">Gerencie unidades, guardas, equipes, armas e movimentações de forma eficiente.</p>
   </div>
 
-  <% if current_user.admin? %>  <!-- Verifica se o usuário é admin -->
+  <% if current_user && current_user.admin? %>  <!-- Verifica se o usuário é admin -->
     <div class="row">
       <div class="col-md-4">
         <div class="card shadow-sm">
