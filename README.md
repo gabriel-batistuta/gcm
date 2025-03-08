@@ -42,7 +42,7 @@ Controle completo de armamentos, equipes e movimentações estratégicas para ó
 
 ### Instalação
 ```bash
-git clone https://github.com/gabriel-batistuta/prefeitura.git
+git clone https://github.com/gabriel-batistuta/gcm.git
 cd prefeitura
 bundle install
 rails db:create db:migrate db:seed
