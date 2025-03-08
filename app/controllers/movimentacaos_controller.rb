@@ -24,14 +24,38 @@ class MovimentacaosController < ApplicationController
   # POST /movimentacaos or /movimentacaos.json
   def create
     @movimentacao = Movimentacao.new(movimentacao_params)
+    arma = Arma.find_by(id: @movimentacao.arma_id)
   
     if @movimentacao.tipo.downcase == "empréstimo"
-      arma = Arma.find_by(id: @movimentacao.arma_id)
-      
       if arma&.emprestada
         respond_to do |format|
           format.html { redirect_to movimentacaos_path, alert: "Esta arma já está emprestada e não pode ser emprestada novamente." }
           format.json { render json: { error: "Esta arma já está emprestada." }, status: :unprocessable_entity }
+        end
+        return
+      end
+    elsif @movimentacao.tipo.downcase == "devolução"
+      ultima_movimentacao = Movimentacao.where(arma_id: @movimentacao.arma_id)
+                                        .where(tipo: "Empréstimo")
+                                        .order(created_at: :desc)
+                                        .first
+  
+      if ultima_movimentacao.nil? || ultima_movimentacao.guarda_id != @movimentacao.guarda_id
+        respond_to do |format|
+          format.html { redirect_to movimentacaos_path, alert: "A arma não pode ser devolvida porque não foi emprestada ou não foi retirada por este guarda." }
+          format.json { render json: { error: "A arma não pode ser devolvida porque não foi emprestada ou não foi retirada por este guarda." }, status: :unprocessable_entity }
+        end
+        return
+      end
+  
+      # Verifica diferença nas quantidades de balas e carregadores
+      balas_diferenca = ultima_movimentacao.quantidade_balas.to_i - @movimentacao.quantidade_balas.to_i
+      carregadores_diferenca = ultima_movimentacao.quantidade_carregadores.to_i - @movimentacao.quantidade_carregadores.to_i
+  
+      if (balas_diferenca > 0 || carregadores_diferenca > 0) && @movimentacao.justificativa.blank?
+        respond_to do |format|
+          format.html { redirect_to movimentacaos_path, alert: "A devolução apresenta falta de balas ou carregadores. Justificativa obrigatória!" }
+          format.json { render json: { error: "Justificativa obrigatória para devolução com falta de balas ou carregadores." }, status: :unprocessable_entity }
         end
         return
       end
@@ -71,6 +95,22 @@ class MovimentacaosController < ApplicationController
       format.json { head :no_content }
     end
   end
+
+  def ultima_movimentacao
+    movimentacao = Movimentacao.where(arma_id: params[:arma_id])
+                               .order(created_at: :desc)
+                               .first
+  
+    if movimentacao
+      render json: {
+        quantidade_balas: movimentacao.quantidade_balas,
+        quantidade_carregadores: movimentacao.quantidade_carregadores
+      }
+    else
+      render json: { quantidade_balas: 0, quantidade_carregadores: 0 }
+    end
+  end
+  
 
   private
     # Use callbacks to share common setup or constraints between actions.

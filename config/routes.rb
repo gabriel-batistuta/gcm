@@ -5,8 +5,8 @@ Rails.application.routes.draw do
   resources :equipes
   resources :unidades
   resources :users, only: [:index, :new, :create, :update, :destroy]
-  # Alteração de senha
-  resources :password_changes, only: [:new, :create]
+  # # Alteração de senha
+  # resources :password_changes, only: [:new, :create]
   # Rota de recuperação de senha já existente
   resources :password_resets, only: [:new, :create, :edit, :update]
   # Cadastro de usuário (somente admin)
@@ -28,6 +28,8 @@ Rails.application.routes.draw do
   # Recuperação de senha
   get  '/password_reset', to: 'password_resets#new'
   post '/password_reset', to: 'password_resets#create'
+
+  get 'movimentacaos/ultima_movimentacao/:arma_id', to: 'movimentacaos#ultima_movimentacao'
 
   # Área administrativa (exemplo)
   namespace :admin do

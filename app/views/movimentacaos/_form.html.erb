@@ -61,9 +61,10 @@
   </div>
 
   <div class="form-group">
-    <%= form.label :justificativa, class: "form-label" %>
-    <%= form.text_area :justificativa, class: "form-input" %>
+    <%= form.label :justificativa, "Justificativa", class: "form-label", id: "justificativa-label" %>
+    <%= form.text_area :justificativa, class: "form-input", id: "movimentacao_justificativa" %>
   </div>
+
 
   <div class="form-actions">
     <%= form.submit "Salvar", class: "form-button" %>
@@ -96,3 +97,47 @@
     }
   </script>
 <% end %>
+
+<script>
+document.addEventListener("DOMContentLoaded", function() {
+  const armaSelect = document.getElementById("movimentacao_arma_id");
+  const balasInput = document.getElementById("movimentacao_quantidade_balas");
+  const carregadoresInput = document.getElementById("movimentacao_quantidade_carregadores");
+  const justificativaLabel = document.getElementById("justificativa-label");
+  const justificativaInput = document.getElementById("movimentacao_justificativa");
+
+  let ultimaBalas = 0, ultimaCarregadores = 0;
+
+  armaSelect.addEventListener("change", function() {
+    if (this.value) {
+      fetch(`/movimentacaos/ultima_movimentacao/${this.value}`)
+        .then(response => response.json())
+        .then(data => {
+          ultimaBalas = data.quantidade_balas || 0;
+          ultimaCarregadores = data.quantidade_carregadores || 0;
+
+          // Exibir ao usuário os valores anteriores
+          alert(`Última movimentação: ${ultimaBalas} balas, ${ultimaCarregadores} carregadores.`);
+        });
+    }
+  });
+
+  function verificarDiferenca() {
+    let balasDiferenca = ultimaBalas - (parseInt(balasInput.value) || 0);
+    let carregadoresDiferenca = ultimaCarregadores - (parseInt(carregadoresInput.value) || 0);
+
+    if (balasDiferenca > 0 || carregadoresDiferenca > 0) {
+      justificativaLabel.textContent = "Justificativa: Explique a redução de balas ou carregadores.";
+      justificativaLabel.style.color = "red";
+      justificativaInput.required = true;
+    } else {
+      justificativaLabel.textContent = "Justificativa";
+      justificativaLabel.style.color = "black";
+      justificativaInput.required = false;
+    }
+  }
+
+  balasInput.addEventListener("input", verificarDiferenca);
+  carregadoresInput.addEventListener("input", verificarDiferenca);
+});
+</script>
