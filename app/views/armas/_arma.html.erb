@@ -1,17 +1,13 @@
-<div id="<%= dom_id arma %>">
-  <p>
-    <strong>Modelo:</strong>
-    <%= arma.modelo %>
-  </p>
-
-  <p>
-    <strong>Registro:</strong>
-    <%= arma.registro %>
-  </p>
-
-  <p>
-    <strong>Emprestada:</strong>
-    <%= arma.emprestada %>
-  </p>
-
+<div id="<%= dom_id arma %>" class="arma-card">
+  <div class="arma-header">
+    <h3 class="arma-title"><%= arma.modelo %></h3>
+  </div>
+  <div class="arma-body">
+    <p class="arma-detail">
+      <strong>Registro:</strong> <%= arma.registro %>
+    </p>
+    <p class="arma-detail">
+      <strong>Emprestada:</strong> <%= arma.emprestada ? 'Sim' : 'Não' %>
+    </p>
+  </div>
 </div>

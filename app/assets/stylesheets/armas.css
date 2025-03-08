@@ -1,0 +1,151 @@
+/* <!-- armas.css --> */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  font-family: Arial, sans-serif;
+  background-color: #f8f9fa;
+  color: #333;
+}
+
+.table-container {
+    width: 50vw;            
+    max-height: 500px;       
+    overflow-y: auto;       
+    margin: 20px auto;      
+    border: 1px solid #ddd; 
+    border-radius: 10px;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+}
+
+.container-armas {
+  width: 80%;
+  margin-top: 20px;
+}
+
+.armas-table {
+    width: 100%;
+    border-collapse: collapse;
+    background: white;
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+}
+
+.armas-table th, .armas-table td {
+  padding: 5px;
+  text-align: center;
+  border-bottom: 1px solid #ddd;
+}
+
+.armas-table thead {
+  background-color: #343a40;
+  color: white;
+  text-transform: uppercase;
+}
+
+.armas-table thead th {
+    position: sticky;
+    top: 0;
+    background-color: #343a40; /* mesmo background do thead */
+    color: white; /* para garantir boa legibilidade */
+    z-index: 2;   /* para que o cabeçalho fique sobre as linhas */
+    padding: 5px; /* garante consistência com o restante */
+}
+
+.even-row {
+  background-color: #f2f2f2;
+}
+
+.odd-row {
+  background-color: #ffffff;
+}
+
+.armas-table tr:hover {
+  background-color: #d6d8db;
+}
+
+.btn {
+  padding: 8px 12px;
+  border: none;
+  border-radius: 5px;
+  text-decoration: none;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.btn-primary {
+  background-color: #007bff;
+  color: white;
+}
+
+.btn-success {
+  background-color: #28a745;
+  color: white;
+}
+
+.btn-secondary {
+  background-color: #6c757d;
+  color: white;
+}
+
+.container-controls {
+  margin-top: 20px;
+  text-align: center;
+}
+
+.td_new {
+    justify-content: center;
+    align-items: center;
+}
+
+.form-control {
+    width: 50%;
+}
+
+
+/* Estilo para o card da arma */
+.arma-card {
+    background: #fff;
+    border: 1px solid #e2e2e2;
+    border-radius: 8px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    padding: 15px;
+    margin-bottom: 15px;
+    transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
+}
+
+.arma-card:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+
+/* Cabeçalho do card */
+.arma-header {
+    border-bottom: 1px solid #eee;
+    margin-bottom: 10px;
+}
+
+.arma-title {
+    font-size: 1.5em;
+    color: #007bff;
+    margin: 0;
+}
+
+/* Corpo do card */
+.arma-body {
+    font-size: 1em;
+    color: #333;
+}
+
+.arma-detail {
+    margin: 8px 0;
+}
+

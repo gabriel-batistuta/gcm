@@ -1,8 +1,21 @@
 <% content_for :title, "Editing arma" %>
 
-<h1>Editing arma</h1>
+<h1>Editar arma</h1>
 
-<%= render "form", arma: @arma %>
+<!-- Formulário como uma nova linha na tabela -->
+<tr class="new-arma-row">
+  <%= form_with(model: @arma, local: true) do |form| %>
+    <td class="td-new"><%= form.text_field :modelo, placeholder: "Modelo", class: "form-control", style: "width: 200px;"
+ %></td>
+    <td class="td-new"><%= form.text_field :registro, placeholder: "Registro", class: "form-control", style: "width: 200px;"
+ %></td>
+    <td class="td-new">
+      <%= form.select :emprestada, [["Não", false], ["Sim", true]], {}, class: "form-control", style: "width: 200px;"
+ %>
+    </td>
+    <td><%= form.submit "Salvar", class: "btn btn-success" %></td>
+  <% end %>
+</tr>
 
 <br>
 

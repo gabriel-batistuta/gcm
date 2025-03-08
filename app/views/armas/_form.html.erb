@@ -1,32 +1,11 @@
-<%= form_with(model: arma) do |form| %>
-  <% if arma.errors.any? %>
-    <div style="color: red">
-      <h2><%= pluralize(arma.errors.count, "error") %> prohibited this arma from being saved:</h2>
-
-      <ul>
-        <% arma.errors.each do |error| %>
-          <li><%= error.full_message %></li>
-        <% end %>
-      </ul>
-    </div>
+<!-- Formulário como uma nova linha na tabela -->
+<tr class="new-arma-row">
+  <%= form_with(model: @arma, local: true) do |form| %>
+    <td class="td-new"><%= form.text_field :modelo, placeholder: "Modelo", class: "form-control" %></td>
+    <td class="td-new"><%= form.text_field :registro, placeholder: "Registro", class: "form-control" %></td>
+    <td class="td-new">
+      <%= form.select :emprestada, [["Não", false], ["Sim", true]], {}, class: "form-control" %>
+    </td>
+    <td><%= form.submit "Salvar", class: "btn btn-success" %></td>
   <% end %>
-
-  <div>
-    <%= form.label :modelo, style: "display: block" %>
-    <%= form.text_field :modelo %>
-  </div>
-
-  <div>
-    <%= form.label :registro, style: "display: block" %>
-    <%= form.text_field :registro %>
-  </div>
-
-  <div>
-    <%= form.label :emprestada, style: "display: block" %>
-    <%= form.checkbox :emprestada %>
-  </div>
-
-  <div>
-    <%= form.submit %>
-  </div>
-<% end %>
+</tr>

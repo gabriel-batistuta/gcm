@@ -4,16 +4,34 @@
 
 <h1>Armas</h1>
 
-<div id="armas">
-  <% @armas.each do |arma| %>
-    <%= render arma %>
-    <p>
-      <%= link_to "Show this arma", arma %>
-    </p>
-  <% end %>
+<div class="table-container">
+  <table class="armas-table">
+    <thead>
+      <tr>
+        <th>Modelo</th>
+        <th>Registro</th>
+        <th>Emprestada</th>
+        <th>Ações</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @armas.each do |arma| %>
+        <tr>
+          <td><%= arma.modelo %></td>
+          <td><%= arma.registro %></td>
+          <td><%= arma.emprestada ? 'Sim' : 'Não' %></td>
+          <td>
+            <%= link_to "Editar", edit_arma_path(arma), class: "btn btn-edit" %>
+            <%= button_to "Excluir", arma, method: :delete, class: "btn btn-delete" %>
+          </td>
+        </tr>
+      <% end %>
+      <tr>
+        <%= render "form", arma: @arma %>
+      </tr>
+    </tbody>
+  </table>
 </div>
-
-<%= link_to "New arma", new_arma_path %>
 
 <div class="voltar-home text-center mt-4">
   <%= link_to "Voltar para a Home", root_path, class: "btn btn-secondary" %>

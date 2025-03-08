@@ -4,6 +4,7 @@ class ArmasController < ApplicationController
   # GET /armas or /armas.json
   def index
     @armas = Arma.all
+    @arma = Arma.new
   end
 
   # GET /armas/1 or /armas/1.json
@@ -22,10 +23,10 @@ class ArmasController < ApplicationController
   # POST /armas or /armas.json
   def create
     @arma = Arma.new(arma_params)
-
+  
     respond_to do |format|
       if @arma.save
-        format.html { redirect_to @arma, notice: "Arma was successfully created." }
+        format.html { render :show, status: :created, location: @arma }
         format.json { render :show, status: :created, location: @arma }
       else
         format.html { render :new, status: :unprocessable_entity }
