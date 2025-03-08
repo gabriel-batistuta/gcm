@@ -1,9 +1,10 @@
 class GuardasController < ApplicationController
   before_action :set_guarda, only: %i[ show edit update destroy ]
-
+  layout "guardas"
   # GET /guardas or /guardas.json
   def index
     @guardas = Guarda.all
+    @guarda = Guarda.new
   end
 
   # GET /guardas/1 or /guardas/1.json

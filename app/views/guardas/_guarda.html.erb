@@ -1,21 +1,11 @@
-<div id="<%= dom_id(guarda) %>" class="guarda-card">
-  <p>
-    <strong>Nome completo:</strong>
-    <%= guarda.nome_completo %>
-  </p>
-
-  <p>
-    <strong>Matricula:</strong>
-    <%= guarda.matricula %>
-  </p>
-
-  <p>
-    <strong>Numeracao porte:</strong>
-    <%= guarda.numeracao_porte %>
-  </p>
-
-  <p>
-    <strong>Equipe:</strong>
-    <%= guarda.equipe.present? ? guarda.equipe.nome : "Nenhuma" %>
-  </p>
-</div>
+<tr id="<%= dom_id(guarda) %>">
+  <td><%= guarda.nome_completo %></td>
+  <td><%= guarda.matricula %></td>
+  <td><%= guarda.numeracao_porte %></td>
+  <td><%= guarda.equipe.present? ? guarda.equipe.nome : "Nenhuma" %></td>
+  <td>
+    <%= link_to "Show", guarda, class: "btn btn-primary" %>
+    <%= link_to "Edit", edit_guarda_path(guarda), class: "btn btn-primary" %>
+    <%= button_to "Destroy", guarda, method: :delete, data: { confirm: "Are you sure?" }, class: "btn btn-danger" %>
+  </td>
+</tr>

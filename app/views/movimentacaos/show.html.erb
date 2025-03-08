@@ -1,13 +1,34 @@
 <p style="color: green"><%= notice %></p>
 
-<div class="movimentacao-card">
-  <div class="movimentacao-header">
-    <%= render @movimentacao %>
-  </div>
-  <div class="movimentacao-links">
-    <%= link_to "Edit this movimentacao", edit_movimentacao_path(@movimentacao), class: "btn btn-warning" %> |
-    <%= link_to "Back to movimentacaos", movimentacaos_path, class: "btn btn-secondary" %>
+<% content_for :title, "Movimentacao" %>
 
-    <%= button_to "Remover essa movimentacao", @movimentacao, method: :delete, class: "btn btn-danger" %>
-  </div>
+<h1>Movimentacao</h1>
+
+<div class="table-container" style="max-height: none;">
+  <table class="movimentacoes-table">
+    <thead>
+      <tr>
+        <th>Armeiro</th>
+        <th>Matrícula</th>
+        <th>Data</th>
+        <th>Hora</th>
+        <th>Tipo</th>
+        <th>Arma</th>
+        <th>Balas</th>
+        <th>Calibre</th>
+        <th>Carregadores</th>
+        <th>Justificativa</th>
+        <th>Ações</th>
+      </tr>
+    </thead>
+    <tbody>
+      <%= render partial: "movimentacao", object: @movimentacao %>
+    </tbody>
+  </table>
+</div>
+
+<div class="voltar-home">
+  <%= link_to "Edit this movimentacao", edit_movimentacao_path(@movimentacao), class: "btn btn-warning" %> |
+  <%= link_to "Back to movimentacaos", movimentacaos_path, class: "btn btn-secondary" %>
+  <%= button_to "Remover essa movimentacao", @movimentacao, method: :delete, class: "btn btn-danger" %>
 </div>

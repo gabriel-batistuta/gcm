@@ -1,9 +1,11 @@
 class MovimentacaosController < ApplicationController
   before_action :set_movimentacao, only: %i[ show edit update destroy ]
-
+  layout "movimentacoes"
+  
   # GET /movimentacaos or /movimentacaos.json
   def index
     @movimentacaos = Movimentacao.all
+    @movimentacao = Movimentacao.new
   end
 
   # GET /movimentacaos/1 or /movimentacaos/1.json

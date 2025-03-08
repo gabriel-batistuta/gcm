@@ -2,6 +2,7 @@ class UsersController < ApplicationController
   before_action :require_admin, only: [:new, :create, :index, :destroy]
   before_action :require_user, only: [:edit_password, :update_password]
   before_action :set_user, only: [:update, :destroy]
+  layout "users"
 
   def index
     @users = User.all

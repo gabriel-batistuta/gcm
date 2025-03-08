@@ -1,9 +1,11 @@
 class UnidadesController < ApplicationController
   before_action :set_unidade, only: %i[ show edit update destroy ]
-
+  layout "unidades"
+  
   # GET /unidades or /unidades.json
   def index
     @unidades = Unidade.all
+    @unidade = Unidade.new
   end
 
   # GET /unidades/1 or /unidades/1.json

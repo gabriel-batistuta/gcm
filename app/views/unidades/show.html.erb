@@ -1,8 +1,24 @@
 <p style="color: green"><%= notice %></p>
 
-<%= render @unidade %>
+<% content_for :title, "Unidade" %>
 
-<div class="voltar-unidades">
+<h1>Unidade</h1>
+
+<div class="table-container" style="max-height: none;">
+  <table class="unidades-table">
+    <thead>
+      <tr>
+        <th>Nome</th>
+        <th>Ações</th>
+      </tr>
+    </thead>
+    <tbody>
+      <%= render partial: "unidade", object: @unidade %>
+    </tbody>
+  </table>
+</div>
+
+<div class="voltar-unidades voltar">
   <%= link_to "Edit this unidade", edit_unidade_path(@unidade), class: "btn btn-primary" %> |
   <%= link_to "Back to unidades", unidades_path, class: "btn btn-primary" %>
   <%= button_to "Destroy this unidade", @unidade, method: :delete, data: { confirm: "Are you sure?" }, class: "btn btn-danger" %>

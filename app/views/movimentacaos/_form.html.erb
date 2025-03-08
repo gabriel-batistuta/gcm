@@ -1,6 +1,6 @@
-<%= form_with(model: movimentacao, local: true) do |form| %>
+<%= form_with(model: movimentacao, local: true, html: { class: "form-container" }) do |form| %>
   <% if movimentacao.errors.any? %>
-    <div style="color: red">
+    <div class="form-errors">
       <h2><%= pluralize(movimentacao.errors.count, "error") %> prohibited this movimentacao from being saved:</h2>
       <ul>
         <% movimentacao.errors.full_messages.each do |msg| %>
@@ -11,62 +11,61 @@
   <% end %>
 
   <!-- Select para o Armeiro (Guarda) -->
-  <div>
-    <%= form.label :guarda_id, "Armeiro", style: "display: block" %>
+  <div class="form-group">
+    <%= form.label :guarda_id, "Armeiro", class: "form-label" %>
     <%= form.collection_select :guarda_id, Guarda.all, :id, :nome_completo, { prompt: "Selecione o Armeiro" }, { class: "form-input", onchange: "updateMatricula(this)" } %>
   </div>
 
   <!-- Select para a Matrícula do Armeiro -->
-  <div>
-    <%= form.label :matricula_armeiro, "Matrícula do Armeiro", style: "display: block" %>
+  <div class="form-group">
+    <%= form.label :matricula_armeiro, "Matrícula do Armeiro", class: "form-label" %>
     <select id="matricula_armeiro_select" name="movimentacao[matricula_armeiro]" class="form-input">
       <option value="">Selecione o Armeiro primeiro</option>
     </select>
   </div>
 
-  <div>
-    <%= form.label :data, style: "display: block" %>
+  <div class="form-group">
+    <%= form.label :data, class: "form-label" %>
     <%= form.date_field :data, class: "form-input" %>
   </div>
 
-  <div>
-    <%= form.label :hora, style: "display: block" %>
+  <div class="form-group">
+    <%= form.label :hora, class: "form-label" %>
     <%= form.time_field :hora, class: "form-input" %>
   </div>
 
-  <div>
-    <%= form.label :tipo, "Tipo", style: "display: block" %>
-    <%= form.select :tipo, ["Empréstimo", "Devolução"], {}, class: "form-input" %>
+  <div class="form-group">
+    <%= form.label :tipo, "Tipo", class: "form-label" %>
+    <%= form.select :tipo, ["Empréstimo", "Devolução"], {}, { class: "form-input" } %>
   </div>
 
-
   <!-- Select para Arma -->
-  <div>
-    <%= form.label :arma_id, "Arma", style: "display: block" %>
+  <div class="form-group">
+    <%= form.label :arma_id, "Arma", class: "form-label" %>
     <%= form.collection_select :arma_id, Arma.all, :id, :modelo, { prompt: "Selecione a Arma" }, { class: "form-input" } %>
   </div>
 
-  <div>
-    <%= form.label :quantidade_balas, style: "display: block" %>
+  <div class="form-group">
+    <%= form.label :quantidade_balas, class: "form-label" %>
     <%= form.number_field :quantidade_balas, class: "form-input" %>
   </div>
 
-  <div>
-    <%= form.label :calibre_municao, style: "display: block" %>
+  <div class="form-group">
+    <%= form.label :calibre_municao, class: "form-label" %>
     <%= form.text_field :calibre_municao, class: "form-input" %>
   </div>
 
-  <div>
-    <%= form.label :quantidade_carregadores, style: "display: block" %>
+  <div class="form-group">
+    <%= form.label :quantidade_carregadores, class: "form-label" %>
     <%= form.number_field :quantidade_carregadores, class: "form-input" %>
   </div>
 
-  <div>
-    <%= form.label :justificativa, style: "display: block" %>
+  <div class="form-group">
+    <%= form.label :justificativa, class: "form-label" %>
     <%= form.text_area :justificativa, class: "form-input" %>
   </div>
 
-  <div>
+  <div class="form-actions">
     <%= form.submit "Salvar", class: "form-button" %>
   </div>
 

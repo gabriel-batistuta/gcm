@@ -4,17 +4,28 @@
 
 <h1>Guardas</h1>
 
-<div id="guardas">
-  <% @guardas.each do |guarda| %>
-    <%= render guarda %>
-    <p>
-      <%= link_to "Show this guarda", guarda %>
-    </p>
-  <% end %>
+<div class="table-container">
+  <table class="guardas-table">
+    <thead>
+      <tr>
+        <th>Nome completo</th>
+        <th>Matricula</th>
+        <th>Numeracao porte</th>
+        <th>Equipe</th>
+        <th>Ações</th>
+      </tr>
+    </thead>
+    <tbody>
+      <%= render @guardas %>
+
+    </tbody>
+  </table>
 </div>
 
-<%= link_to "New guarda", new_guarda_path %>
+<div class="voltar-home voltar text-center mt-4">
+  <%= link_to "New guarda", new_guarda_path, class: "btn btn-primary" %>
+</div>
 
-<div class="voltar-home text-center mt-4">
+<div class="voltar-home voltar text-center mt-4">
   <%= link_to "Voltar para a Home", root_path, class: "btn btn-secondary" %>
 </div>

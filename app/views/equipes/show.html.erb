@@ -1,10 +1,25 @@
 <p style="color: green"><%= notice %></p>
 
-<%= render @equipe %>
+<% content_for :title, "Equipe" %>
+
+<h1>Equipe</h1>
+
+<div class="table-container" style="max-height: none;">
+  <table class="equipes-table">
+    <thead>
+      <tr>
+        <th>Nome</th>
+        <th>Ações</th>
+      </tr>
+    </thead>
+    <tbody>
+      <%= render partial: "equipe", object: @equipe %>
+    </tbody>
+  </table>
+</div>
 
 <div>
-  <%= link_to "Edit this equipe", edit_equipe_path(@equipe) %> |
-  <%= link_to "Back to equipes", equipes_path %>
-
-  <%= button_to "Destroy this equipe", @equipe, method: :delete %>
+  <%= link_to "Edit this equipe", edit_equipe_path(@equipe), class: "btn btn-primary" %> |
+  <%= link_to "Back to equipes", equipes_path, class: "btn btn-primary" %>
+  <%= button_to "Destroy this equipe", @equipe, method: :delete, data: { confirm: "Are you sure?" }, class: "btn btn-danger" %>
 </div>

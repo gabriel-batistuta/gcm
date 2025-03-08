@@ -1,0 +1,20 @@
+/* Reset básico */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+
+/* Títulos */
+h1 {
+    text-align: center;
+    margin-bottom: 20px;
+    font-size: 2rem;
+    color: #333;
+  }
+
+/* Centralização dos links de navegação */
+.voltar-unidades, .voltar-home {
+    text-align: center;
+    margin-top: 20px;
+  }

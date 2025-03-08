@@ -26,13 +26,11 @@
           </td>
         </tr>
       <% end %>
-      <tr>
-        <%= render "form", arma: @arma %>
-      </tr>
     </tbody>
   </table>
 </div>
 
-<div class="voltar-home text-center mt-4">
-  <%= link_to "Voltar para a Home", root_path, class: "btn btn-secondary" %>
+<div class="voltar-home voltar text-center mt-4">
+  <%= link_to "Nova Arma", new_arma_path, class: "btn btn-new-arma" %> <!-- Botão Nova Arma -->
+  <%= link_to "Voltar para a Home", root_path, class: "btn btn-back-home" %> <!-- Botão Voltar para a Home -->
 </div>

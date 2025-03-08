@@ -1,51 +1,17 @@
-<div id="<%= dom_id(movimentacao) %>" class="movimentacao-card">
-  <p>
-    <strong>Armeiro:</strong>
-    <%= movimentacao.guarda.present? ? movimentacao.guarda.nome_completo : "N/A" %>
-  </p>
-
-  <p>
-    <strong>Matrícula Armeiro:</strong>
-    <%= movimentacao.matricula_armeiro %>
-  </p>
-
-  <p>
-    <strong>Data:</strong>
-    <%= movimentacao.data %>
-  </p>
-
-  <p>
-    <strong>Hora:</strong>
-    <%= movimentacao.hora %>
-  </p>
-
-  <p>
-    <strong>Tipo:</strong>
-    <%= movimentacao.tipo %>
-  </p>
-
-  <p>
-    <strong>Arma:</strong>
-    <%= movimentacao.arma.present? ? movimentacao.arma.modelo : "N/A" %>
-  </p>
-
-  <p>
-    <strong>Quantidade de Balas:</strong>
-    <%= movimentacao.quantidade_balas %>
-  </p>
-
-  <p>
-    <strong>Calibre da Munição:</strong>
-    <%= movimentacao.calibre_municao %>
-  </p>
-
-  <p>
-    <strong>Quantidade de Carregadores:</strong>
-    <%= movimentacao.quantidade_carregadores %>
-  </p>
-
-  <p>
-    <strong>Justificativa:</strong>
-    <%= movimentacao.justificativa %>
-  </p>
-</div>
+<tr id="<%= dom_id(movimentacao) %>">
+  <td><%= movimentacao.guarda.present? ? movimentacao.guarda.nome_completo : "N/A" %></td>
+  <td><%= movimentacao.matricula_armeiro %></td>
+  <td><%= movimentacao.data %></td>
+  <td><%= movimentacao.hora %></td>
+  <td><%= movimentacao.tipo %></td>
+  <td><%= movimentacao.arma.present? ? movimentacao.arma.modelo : "N/A" %></td>
+  <td><%= movimentacao.quantidade_balas %></td>
+  <td><%= movimentacao.calibre_municao %></td>
+  <td><%= movimentacao.quantidade_carregadores %></td>
+  <td><%= movimentacao.justificativa %></td>
+  <td>
+    <%= link_to "Show", movimentacao, class: "btn btn-primary" %>
+    <%= link_to "Edit", edit_movimentacao_path(movimentacao), class: "btn btn-warning" %>
+    <%= button_to "Delete", movimentacao, method: :delete, data: { confirm: "Are you sure?" }, class: "btn btn-danger" %>
+  </td>
+</tr>

@@ -2,12 +2,10 @@
 
 <div class="movimentacoes-container">
   <h1>Editing movimentacao</h1>
-
   <div class="movimentacao-card">
     <%= render "form", movimentacao: @movimentacao %>
   </div>
-
-  <div class="movimentacao-links">
+  <div class="movimentacao-links voltar-home">
     <%= link_to "Show this movimentacao", @movimentacao, class: "btn btn-primary" %> |
     <%= link_to "Back to movimentacaos", movimentacaos_path, class: "btn btn-secondary" %>
   </div>

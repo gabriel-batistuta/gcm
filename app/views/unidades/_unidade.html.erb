@@ -1,5 +1,8 @@
-<div id="<%= dom_id(unidade) %>" class="unidade-card">
-  <p>
-    <strong>Nome:</strong> <%= unidade.nome %>
-  </p>
-</div>
+<tr id="<%= dom_id(unidade) %>">
+  <td><%= unidade.nome %></td>
+  <td>
+    <%= link_to "Show", unidade, class: "btn btn-primary" %>
+    <%= link_to "Edit", edit_unidade_path(unidade), class: "btn btn-primary" %>
+    <%= button_to "Destroy", unidade, method: :delete, data: { confirm: "Are you sure?" }, class: "btn btn-danger" %>
+  </td>
+</tr>

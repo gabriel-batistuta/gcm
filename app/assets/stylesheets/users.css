@@ -1,0 +1,201 @@
+table {
+    border-collapse: collapse; /* Garante que não haja espaços entre as bordas */
+    width: 100%; /* Faz a tabela ocupar toda a largura disponível */
+}
+
+/* Estilo para a tabela */
+.table {
+    /* width: 100%; */
+    border-collapse: collapse;
+    background: #fff;
+}
+
+/* Container da tabela rolável */
+.table-container {
+    width: 80vw;
+    max-height: 600px;
+    overflow-y: auto;
+    margin: 20px auto;
+    border: 1px solid #ddd;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+
+/* Cabeçalho fixo */
+.table thead th {
+    position: sticky;
+    top: 0;
+    background-color: #343a40;
+    color: #fff;
+    padding: 12px;
+    z-index: 2;
+}
+
+.table th, .table td {
+    padding: 10px;
+    text-align: center;
+    /* border-bottom: 1px solid #ddd; */
+    border: 1px solid #ddd; /* Mantém um contorno suave */
+}
+
+/* Garantir altura fixa para as linhas */
+.table tbody tr {
+    /* height: 10vh; */
+    max-height: 10vh;
+    overflow: hidden;
+}
+
+/* Destacar a linha do usuário logado */
+.user-row {
+    background-color: #f8d7da; /* Vermelho claro para indicar restrição */
+}
+
+/* Mensagem para o usuário logado */
+.user-message {
+    color: #dc3545;
+    font-weight: bold;
+    display: block;
+    padding: 5px;
+}
+
+/* Alinhamento dos elementos dentro das células */
+.table td {
+    vertical-align: middle;
+    overflow: hidden;
+    white-space: nowrap;
+}
+
+/* Ajuste de tamanho dos botões */
+.table td .btn {
+    padding: 6px 10px;
+    font-size: 12px;
+    max-height: 30px;
+}
+
+/* Ajuste para a célula de ações */
+td:last-child {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    justify-content: center; /* Centraliza os botões */
+    flex-wrap: wrap; /* Evita que fiquem muito espalhados */
+}
+
+/* Ajuste para o formulário dentro da célula */
+/* Ajuste para o formulário dentro da célula */
+.form-container {
+    display: flex;
+    flex-direction: row;
+    align-items: center; /* Alinha verticalmente os elementos */
+    justify-content: center;
+    gap: 5px;
+    height: 30px; /* Mantém altura fixa */
+    background: transparent !important;
+    border: none !important;
+    padding: 0;
+    margin: 0;
+}
+
+.form-container label,
+.form-container select,
+.form-container input[type="submit"],
+.table td .btn {
+    height: 30px; /* Garante a mesma altura para todos os elementos */
+    font-size: 12px; /* Tamanho da fonte consistente */
+    line-height: 30px; /* Alinha verticalmente o texto dentro do elemento */
+    margin: 0; /* Remove margens para garantir alinhamento */
+}
+
+/* Ajuste específico para o select */
+.form-container select {
+    padding: 2px 5px; /* Ajuste no padding para uniformizar o estilo */
+}
+
+/* Ajuste no label */
+.form-container label {
+    margin: 0; /* Garante que o label não tenha margem extra */
+    line-height: 30px; /* Alinha o texto do label verticalmente */
+}
+
+
+.small-select {
+    width: 70px; /* Reduzindo um pouco a largura */
+    padding: 2px;
+}
+
+/* Ajuste para a célula de ações */
+td:last-child {
+    display: flex;
+    align-items: center;
+    gap: 15px; /* Aumentando o espaço entre os itens */
+    justify-content: center; /* Centraliza os itens na mesma linha */
+    flex-wrap: nowrap; /* Garante que os itens fiquem em uma linha única, sem quebra */
+}
+
+/* Estilo para o formulário dentro da célula */
+/* Ajuste para o formulário dentro da célula */
+.form-container {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    gap: 15px;
+    height: 30px;
+    background: transparent !important;
+    border: none !important;
+    padding: 0;
+    margin: 0;
+}
+
+/* Estilo moderno e elegante para o select */
+/* Estilo moderno e elegante para o select */
+.form-container select {
+    padding: 0 12px; /* Ajuste no padding para centralizar horizontalmente */
+    font-size: 14px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+    background-color: #f7f7f7;
+    transition: all 0.3s ease;
+    text-align: center; /* Alinha o texto horizontalmente */
+    vertical-align: middle; /* Alinha verticalmente */
+    height: 30px; /* Garante que o select tenha uma altura consistente */
+    line-height: 30px; /* Alinha o texto verticalmente */
+}
+
+/* Estilo para o label */
+.form-container label {
+    margin: 0;
+    font-size: 14px;
+    font-weight: 600;
+    line-height: 30px; /* Garante o alinhamento vertical do texto no label */
+    color: #343a40;
+}
+
+/* Efeito de foco para o select */
+.form-container select:focus {
+    border-color: #007bff;
+    background-color: #e9f7fe;
+    outline: none;
+}
+
+/* Estilo para os botões */
+.table td .btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 6px 12px;
+    font-size: 13px;
+    max-height: 35px;
+    border-radius: 5px;
+    transition: all 0.3s ease;
+}
+
+.btn-sub {
+    
+}
+
+/* Efeito de foco para os botões */
+.table td .btn:hover {
+    opacity: 0.8;
+}

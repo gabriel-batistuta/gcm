@@ -1,6 +1,7 @@
 class ArmasController < ApplicationController
   before_action :set_arma, only: %i[ show edit update destroy ]
-
+  layout "armas"
+  
   # GET /armas or /armas.json
   def index
     @armas = Arma.all

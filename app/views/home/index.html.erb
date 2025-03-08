@@ -1,16 +1,17 @@
-<% if session[:user_id] %>
-  <div class="text-end m-3">
-    <%= button_to "Logout", logout_path, method: :delete, class: "btn btn-danger" %>
-  </div>
-<% else %>
-  <script>
-    window.location.href = "<%= login_path %>";
-  </script>
-<% end %>
+
 
 <div class="container mt-5">
   <div class="jumbotron p-5 mb-4 bg-light rounded-3 text-center">
-    <h1 class="display-4 fw-bold">Bem-vindo(a) ao Sistema de Gestão</h1>
+    <div class="d-flex justify-content-between align-items-center">
+      <h1 class="display-4 fw-bold">Bem-vindo(a) ao Sistema de Gestão</h1>
+      <% if session[:user_id] %>
+        <%= button_to "Logout", logout_path, method: :delete, class: "btn btn-danger" %>
+      <% else %>
+        <script>
+          window.location.href = "<%= login_path %>";
+        </script>
+      <% end %>
+    </div>
     <p class="lead">Gerencie unidades, guardas, equipes, armas e movimentações de forma eficiente.</p>
   </div>
 

@@ -1,11 +1,28 @@
 <!-- Formulário como uma nova linha na tabela -->
 <tr class="new-arma-row">
   <%= form_with(model: @arma, local: true) do |form| %>
-    <td class="td-new"><%= form.text_field :modelo, placeholder: "Modelo", class: "form-control" %></td>
-    <td class="td-new"><%= form.text_field :registro, placeholder: "Registro", class: "form-control" %></td>
     <td class="td-new">
-      <%= form.select :emprestada, [["Não", false], ["Sim", true]], {}, class: "form-control" %>
+      <div class="form-group">
+        <%= form.label :modelo, "Modelo", class: "form-label" %>
+        <%= form.text_field :modelo, placeholder: "Modelo", class: "form-input" %>
+      </div>
     </td>
-    <td><%= form.submit "Salvar", class: "btn btn-success" %></td>
+    <td class="td-new">
+      <div class="form-group">
+        <%= form.label :registro, "Registro", class: "form-label" %>
+        <%= form.text_field :registro, placeholder: "Registro", class: "form-input" %>
+      </div>
+    </td>
+    <td class="td-new">
+      <div class="form-group">
+        <%= form.label :emprestada, "Emprestada", class: "form-label" %>
+        <%= form.select :emprestada, [["Não", false], ["Sim", true]], {}, class: "form-input" %>
+      </div>
+    </td>
+    <td class="td-new">
+      <div class="form-group">
+        <%= form.submit "Salvar", class: "btn btn-success btn-save" %>
+      </div>
+    </td>
   <% end %>
 </tr>

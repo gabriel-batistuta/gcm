@@ -1,10 +1,28 @@
 <p style="color: green"><%= notice %></p>
 
-<%= render @guarda %>
+<% content_for :title, "Guarda" %>
 
-<div>
-  <%= link_to "Edit this guarda", edit_guarda_path(@guarda) %> |
-  <%= link_to "Back to guardas", guardas_path %>
+<h1>Guarda</h1>
 
-  <%= button_to "Destroy this guarda", @guarda, method: :delete %>
+<div class="table-container" style="max-height: none;">
+  <table class="guardas-table">
+    <thead>
+      <tr>
+        <th>Nome completo</th>
+        <th>Matricula</th>
+        <th>Numeracao porte</th>
+        <th>Equipe</th>
+        <th>Ações</th>
+      </tr>
+    </thead>
+    <tbody>
+      <%= render partial: "guarda", object: @guarda %>
+    </tbody>
+  </table>
+</div>
+
+<div class="voltar-home">
+  <%= link_to "Edit this guarda", edit_guarda_path(@guarda), class: "btn btn-primary" %> |
+  <%= link_to "Back to guardas", guardas_path, class: "btn btn-primary" %>
+  <%= button_to "Destroy this guarda", @guarda, method: :delete, data: { confirm: "Are you sure?" }, class: "btn btn-danger" %>
 </div>

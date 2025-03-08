@@ -2,23 +2,31 @@
 
 <h1>Movimentacaos</h1>
 
-<div class="movimentacoes-container">
-  <% @movimentacaos.each do |movimentacao| %>
-    <div class="movimentacao-card">
-      <div class="movimentacao-header">
-        <%= render movimentacao %>
-      </div>
-      <div class="movimentacao-links">
-        <p>
-          <%= link_to "Show this movimentacao", movimentacao, class: "btn btn-primary" %>
-        </p>
-      </div>
-    </div>
-  <% end %>
+<div class="table-container">
+  <table class="movimentacoes-table">
+    <thead>
+      <tr>
+        <th>Armeiro</th>
+        <th>Matrícula</th>
+        <th>Data</th>
+        <th>Hora</th>
+        <th>Tipo</th>
+        <th>Arma</th>
+        <th>Balas</th>
+        <th>Calibre</th>
+        <th>Carregadores</th>
+        <th>Justificativa</th>
+        <th>Ações</th>
+      </tr>
+    </thead>
+    <tbody>
+      <%= render @movimentacaos %>
+    </tbody>
+  </table>
 </div>
 
-<%= link_to "Nova movimentação", new_movimentacao_path, class: "btn btn-success" %>
 
-<div class="voltar-home text-center mt-4">
+<div class="voltar-home voltar text-center mt-4">
+  <%= link_to "Nova movimentação", new_movimentacao_path, class: "btn btn-success" %>
   <%= link_to "Voltar para a Home", root_path, class: "btn btn-secondary" %>
 </div>

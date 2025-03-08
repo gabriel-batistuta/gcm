@@ -1,9 +1,11 @@
 class EquipesController < ApplicationController
   before_action :set_equipe, only: %i[ show edit update destroy ]
-
+  layout "equipes" 
+  
   # GET /equipes or /equipes.json
   def index
     @equipes = Equipe.all
+    @equipe = Equipe.new
   end
 
   # GET /equipes/1 or /equipes/1.json

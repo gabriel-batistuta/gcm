@@ -1,43 +1,45 @@
 <h1>Lista de Usuários</h1>
 
-<table class="table">
-  <thead>
-    <tr>
-      <th>Nome</th>
-      <th>Email</th>
-      <th>Administrador</th>
-      <th>Ações</th>
-    </tr>
-  </thead>
-  <tbody>
-    <% @users.each do |user| %>
+<div class="table-container">
+  <table class="table">
+    <thead>
       <tr>
-        <td><%= user.name %></td>
-        <td><%= user.email %></td>
-        <td>
-          <%= user.admin? ? "Sim" : "Não" %>
-        </td>
-        <td>
-          <% if current_user&.admin? && current_user != user %>
-            <!-- Formulário para atualizar o status de administrador -->
-            <%= form_with model: user, url: user_path(user), method: :patch, local: true do |form| %>
-              <div class="form-check mb-2">
-                <%= form.check_box :admin, class: "form-check-input", checked: user.admin? %>
-                <%= form.label :admin, "Tornar Administrador", class: "form-check-label" %>
-              </div>
-              <%= form.submit "Salvar", class: "btn btn-primary btn-sm" %>
-            <% end %>
-            <!-- Botão para apagar o usuário -->
-            <%= button_to "Apagar", user_path(user), method: :delete, data: { confirm: "Tem certeza que deseja apagar este usuário?" }, class: "btn btn-danger btn-sm mt-2" %>
-          <% end %>
-        </td>
+        <th>Nome</th>
+        <th>Email</th>
+        <th>Administrador</th>
+        <th>Ações</th>
       </tr>
-    <% end %>
-  </tbody>
-</table>
+    </thead>
+    <tbody>
+      <% @users.each do |user| %>
+        <tr class="<%= 'user-row' if current_user == user %>">
+          <td><%= user.name %></td>
+          <td><%= user.email %></td>
+          <td><%= user.admin? ? "Sim" : "Não" %></td>
+          <td>
+            <% if current_user == user %>
+              <span class="user-message">Você não pode alterar seu próprio status de administrador.</span>
+            <% elsif current_user&.admin? %>
+              <%= form_with model: user, url: user_path(user), method: :patch, local: true do |form| %>
+                <div class="form-container">
+                  <%= form.label :admin, "Tornar ADM"%>
+                  <%= form.select :admin, [["Não", false], ["Sim", true]], {}, class: "form-control small-select" %>
+                  <%= form.submit "Salvar", class: "btn btn-primary btn-sm btn-sub" %>
+                </div>
+              <% end %>
+              <%= button_to "Apagar", user_path(user), method: :delete, data: { confirm: "Tem certeza que deseja apagar este usuário?" }, class: "btn btn-danger btn-sm" %>
+            <% end %>
+          </td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+</div>
 
-<%= link_to "Novo Usuário", new_user_path, class: "btn btn-success" if current_user&.admin? %>
+<% if current_user&.admin? %>
+  <%= link_to "Novo Usuário", new_user_path, class: "btn btn-success" %>
+<% end %>
 
-<div class="voltar-home text-center mt-4">
+<div class="voltar-home voltar">
   <%= link_to "Voltar para a Home", root_path, class: "btn btn-secondary" %>
 </div>
