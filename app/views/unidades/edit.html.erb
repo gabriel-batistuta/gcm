@@ -1,12 +1,16 @@
 <% content_for :title, "Editing unidade" %>
 
-<h1>Editing unidade</h1>
+<h1>Editando unidade</h1>
 
+<div class="pre_form">
 <%= render "form", unidade: @unidade %>
+</div>
 
 <br>
 
 <div class="voltar-unidades voltar">
-  <%= link_to "Show this unidade", @unidade, class: "btn btn-primary" %> |
-  <%= link_to "Back to unidades", unidades_path, class: "btn btn-primary" %>
+  <!--
+    <%= link_to "Show this unidade", @unidade, class: "btn btn-primary" %> |
+  -->
+  <%= link_to "Voltar para unidades", unidades_path, class: "btn btn-primary" %>
 </div>

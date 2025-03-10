@@ -20,7 +20,7 @@ body {
 
 /* Estilo para a tabela de armas */
 .table-container {
-  width: 80%;
+  width: 60%;
   max-height: 500px;
   overflow-y: auto;
   margin: 20px auto;
@@ -87,11 +87,15 @@ body {
   border-radius: 5px;
   font-weight: bold;
   cursor: pointer;
-  transition: background-color 0.3s;
+  /* transition: background-color 0.3s; */
   border: none;
 }
 
 .btn:hover {
+  color: white;
+}
+
+.btn-new-arma:hover {
   background-color: #218838; /* Verde escuro */
 }
 
@@ -101,13 +105,6 @@ body {
   color: white;
 }
 
-/* Botões de Editar e Excluir - Preto com texto sem borda e sem hover */
-.btn-edit, .btn-delete {
-  color: black;
-  background-color: transparent;
-  border: none;
-  text-decoration: none;
-}
 
 /* Botão Voltar para a Home - Cinza */
 .btn-back-home {

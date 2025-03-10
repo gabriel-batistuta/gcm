@@ -20,7 +20,7 @@
           <td><%= arma.modelo %></td>
           <td><%= arma.registro %></td>
           <td><%= arma.emprestada ? 'Sim' : 'Não' %></td>
-          <td>
+          <td class="acoes-container">
             <%= link_to "Editar", edit_arma_path(arma), class: "btn btn-edit" %>
             <%= button_to "Excluir", arma, method: :delete, class: "btn btn-delete" %>
           </td>

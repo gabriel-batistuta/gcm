@@ -1,11 +1,13 @@
 <% content_for :title, "New unidade" %>
 
-<h1>New unidade</h1>
+<h1>Nova unidade</h1>
 
-<%= render "form", unidade: @unidade %>
+<div class="pre_form">
+  <%= render "form", unidade: @unidade %>
+</div>
 
 <br>
 
 <div class="voltar-unidades voltar">
-  <%= link_to "Back to unidades", unidades_path, class: "btn btn-primary" %>
+  <%= link_to "Voltar para unidades", unidades_path, class: "btn btn-primary" %>
 </div>

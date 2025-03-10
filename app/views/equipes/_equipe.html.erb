@@ -1,8 +1,10 @@
 <tr id="<%= dom_id(equipe) %>">
   <td><%= equipe.nome %></td>
   <td>
-    <%= link_to "Show", equipe, class: "btn btn-primary" %>
-    <%= link_to "Edit", edit_equipe_path(equipe), class: "btn btn-primary" %>
-    <%= button_to "Destroy", equipe, method: :delete, data: { confirm: "Are you sure?" }, class: "btn btn-danger" %>
+    <!--
+      <%= link_to "Show", equipe, class: "btn btn-primary" %>
+    -->
+    <%= link_to "Editar", edit_equipe_path(equipe), class: "btn btn-primary btn-edit" %>
+    <%= button_to "Remover", equipe, method: :delete, data: { confirm: "Are you sure?" }, class: "btn btn-danger btn-delete" %>
   </td>
 </tr>

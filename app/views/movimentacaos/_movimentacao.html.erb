@@ -10,8 +10,10 @@
   <td><%= movimentacao.quantidade_carregadores %></td>
   <td><%= movimentacao.justificativa %></td>
   <td>
+    <!--
     <%= link_to "Show", movimentacao, class: "btn btn-primary" %>
-    <%= link_to "Edit", edit_movimentacao_path(movimentacao), class: "btn btn-warning" %>
-    <%= button_to "Delete", movimentacao, method: :delete, data: { confirm: "Are you sure?" }, class: "btn btn-danger" %>
+    --->
+    <%= link_to "Editar", edit_movimentacao_path(movimentacao), class: "btn btn-warning btn-edit" %>
+    <%= button_to "Remover", movimentacao, method: :delete, data: { confirm: "Are you sure?" }, class: "btn btn-danger btn-delete" %>
   </td>
 </tr>

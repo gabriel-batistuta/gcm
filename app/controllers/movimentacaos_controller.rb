@@ -64,7 +64,7 @@ class MovimentacaosController < ApplicationController
     respond_to do |format|
       if @movimentacao.save
         atualizar_status_arma(@movimentacao)
-        format.html { redirect_to @movimentacao, notice: "Movimentação criada com sucesso." }
+        format.html { redirect_to movimentacaos_path, notice: "Movimentação criada com sucesso." }
         format.json { render :show, status: :created, location: @movimentacao }
       else
         format.html { render :new, status: :unprocessable_entity }
@@ -78,7 +78,7 @@ class MovimentacaosController < ApplicationController
     respond_to do |format|
       if @movimentacao.update(movimentacao_params)
         atualizar_status_arma(@movimentacao)
-        format.html { redirect_to @movimentacao, notice: "Movimentação atualizada com sucesso." }
+        format.html { redirect_to movimentacaos_path, notice: "Movimentação atualizada com sucesso." }
         format.json { render :show, status: :ok, location: @movimentacao }
       else
         format.html { render :edit, status: :unprocessable_entity }
@@ -91,7 +91,7 @@ class MovimentacaosController < ApplicationController
   def destroy
     @movimentacao.destroy!
     respond_to do |format|
-      format.html { redirect_to movimentacaos_path, status: :see_other, notice: "Movimentação foi removida com sucesso." }
+      format.html { redirect_to movimentacaos_path, status: :see_other, notice: "Movimentação foi deletada com sucesso." }
       format.json { head :no_content }
     end
   end

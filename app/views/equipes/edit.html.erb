@@ -1,12 +1,14 @@
 <% content_for :title, "Editing equipe" %>
 
-<h1>Editing equipe</h1>
+<h1>Editando equipe</h1>
 
 <%= render "form", equipe: @equipe %>
 
 <br>
 
-<div>
+<div class="voltar">
+  <!--
   <%= link_to "Show this equipe", @equipe, class: "btn btn-primary" %> |
-  <%= link_to "Back to equipes", equipes_path, class: "btn btn-primary" %>
+  -->
+  <%= link_to "Voltar para equipes", equipes_path, class: "btn btn-primary" %>
 </div>
