@@ -4,6 +4,11 @@
 
 <h1>Guardas</h1>
 
+<!-- Barra de busca centralizada com estilo aprimorado -->
+<div class="search-container">
+  <input type="text" id="search-input" placeholder="Buscar guardas..." class="form-control search-input" />
+</div>
+
 <div class="table-container">
   <table class="guardas-table">
     <thead>
@@ -17,7 +22,6 @@
     </thead>
     <tbody>
       <%= render @guardas %>
-
     </tbody>
   </table>
 </div>
@@ -29,3 +33,58 @@
 <div class="voltar-home voltar text-center mt-4">
   <%= link_to "Voltar para a Home", root_path, class: "btn btn-secondary" %>
 </div>
+
+<script>
+  document.addEventListener("DOMContentLoaded", function() {
+    const searchInput = document.getElementById('search-input');
+    const tbody = document.querySelector('.guardas-table tbody');
+
+    function filterRows() {
+      const filter = searchInput.value.toLowerCase();
+      const rows = tbody.querySelectorAll('tr');
+
+      rows.forEach(row => {
+        // Se for a linha de "no results", ignore
+        if (row.classList.contains("no-results")) return;
+        // Considera que a primeira célula contém o nome completo do guarda
+        const nomeCell = row.querySelector('td');
+        if (nomeCell) {
+          const text = nomeCell.textContent.toLowerCase();
+          row.style.display = (filter === "" || text.includes(filter)) ? "" : "none";
+        }
+      });
+
+      // Conta quantas linhas (exceto a de mensagem) estão visíveis
+      let visibleCount = 0;
+      rows.forEach(row => {
+        if (!row.classList.contains("no-results") && row.style.display !== "none") {
+          visibleCount++;
+        }
+      });
+
+      if (visibleCount === 0) {
+        // Se nenhuma linha estiver visível e a linha de mensagem não existir, cria-a
+        if (!tbody.querySelector('tr.no-results')) {
+          let noResultsRow = document.createElement("tr");
+          noResultsRow.classList.add("no-results");
+          let cell = document.createElement("td");
+          cell.colSpan = 5; // Número total de colunas na tabela
+          cell.style.textAlign = "center";
+          cell.textContent = "sem guardas disponiveis...";
+          noResultsRow.appendChild(cell);
+          tbody.appendChild(noResultsRow);
+        }
+      } else {
+        // Se houver linhas visíveis, remove a linha de mensagem, se existir
+        const noResultsRow = tbody.querySelector('tr.no-results');
+        if (noResultsRow) {
+          noResultsRow.remove();
+        }
+      }
+    }
+
+    searchInput.addEventListener('keyup', filterRows);
+    // Executa o filtro na carga inicial, caso a tabela esteja vazia
+    filterRows();
+  });
+</script>

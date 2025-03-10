@@ -20,6 +20,26 @@ h1 {
   color: #333;
 }
 
+.search-container {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.search-container .search-input {
+  max-width: 300px;
+  margin: 0 auto;
+  padding: 10px 15px;
+  border: 2px solid black;
+  border-radius: 10px;
+  transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.search-container .search-input:focus {
+  border-color: #0056b3;
+  box-shadow: 0 0 5px rgba(0, 123, 255, 0.5);
+  outline: none;
+}
+
 /* Centralização dos links de navegação */
 .voltar-unidades, .voltar-home, .voltar {
   margin-top: 20px;

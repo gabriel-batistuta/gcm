@@ -50,14 +50,22 @@ class GuardasController < ApplicationController
 
   # DELETE /guardas/1 or /guardas/1.json
   def destroy
+    # Atualiza as armas emprestadas para esse guarda, forçando a atualização dos campos
+    # Arma.where(guarda_emprestado_id: @guarda.id).find_each do |arma|
+    #   arma.update_columns(emprestada: false, guarda_emprestado_id: nil)
+    # end
+  
+    # Caso haja movimentações associadas que não permitam guardar o histórico sem o guarda, opte por removê-las
+    Movimentacao.where(guarda_id: @guarda.id).destroy_all
+  
     @guarda.destroy!
-
+  
     respond_to do |format|
       format.html { redirect_to guardas_path, status: :see_other, notice: "Guarda apagado com sucesso!" }
       format.json { head :no_content }
     end
   end
-
+  
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_guarda
