@@ -1,6 +1,6 @@
 /* Container da tabela rolável */
 .table-container {
-  width: 80vw !important;
+  width: 70% !important;
   max-height: 500px;
   overflow-y: auto;
   margin: 20px auto;

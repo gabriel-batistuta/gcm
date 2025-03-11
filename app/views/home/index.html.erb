@@ -1,97 +1,132 @@
-
-
-<div class="container mt-5">
-  <div class="jumbotron p-5 mb-4 bg-light rounded-3 text-center">
-    <div class="d-flex justify-content-between align-items-center">
-      <h1 class="display-4 fw-bold">Bem-vindo(a) ao Sistema de Controle Bélico para a Guarda Civil Municipal (GCM)</h1>
-      <% if session[:user_id] %>
-        <%= button_to "Logout", logout_path, method: :delete, class: "btn btn-danger" %>
-      <% else %>
-        <script>
-          window.location.href = "<%= login_path %>";
-        </script>
-      <% end %>
-    </div>
-    <p class="lead">Gerencie unidades, guardas, equipes, armas e movimentações de forma eficiente.</p>
-  </div>
-
+<div class="container-fluid">
   <div class="row">
-  <div class="col-md-4">
-  <div class="card shadow-sm">
-  <div class="card-body text-center">
-  <h5 class="card-title">CRUD de Unidades</h5>
-  <p class="card-text">Gerencie unidades de segurança.</p>
-  <a href="<%= unidades_path %>" class="btn btn-primary">Acessar</a>
-  </div>
-  </div>
-  </div>
-  
-  <div class="col-md-4">
-  <div class="card shadow-sm">
-  <div class="card-body text-center">
-  <h5 class="card-title">CRUD de Guardas</h5>
-  <p class="card-text">Controle os guardas do sistema.</p>
-    <a href="<%= guardas_path %>" class="btn btn-primary">Acessar</a>
-    </div>
-    </div>
-    </div>
-    
-    <div class="col-md-4">
-    <div class="card shadow-sm">
-    <div class="card-body text-center">
-    <h5 class="card-title">CRUD de Equipes</h5>
-    <p class="card-text">Administre as equipes de segurança.</p>
-    <a href="<%= equipes_path %>" class="btn btn-primary">Acessar</a>
-    </div>
-    </div>
-    </div>
-    </div>
-    
-    <div class="row mt-4">
-    <div class="col-md-6">
-    <div class="card shadow-sm">
-    <div class="card-body text-center">
-    <h5 class="card-title">CRUD de Armas</h5>
-    <p class="card-text">Gerencie o armamento disponível.</p>
-    <a href="<%= armas_path %>" class="btn btn-primary">Acessar</a>
-    </div>
-    </div>
-    </div>
-    
-    <div class="col-md-6">
-    <div class="card shadow-sm">
-    <div class="card-body text-center">
-    <h5 class="card-title">Gerenciamento de Movimentações</h5>
-    <p class="card-text">Acompanhe todas as movimentações.</p>
-    <a href="<%= movimentacaos_path %>" class="btn btn-primary">Acessar</a>
-    </div>
-    </div>
-    </div>
-    </div>
-    
-    <% if current_user && current_user.admin? %>  <!-- Verifica se o usuário é admin -->
-      <!-- Links para CRUD de Usuários -->
-      <div class="row mt-4">
-        <div class="col-md-6">
-          <div class="card shadow-sm">
-            <div class="card-body text-center">
-              <h5 class="card-title">Cadastrar Novo Usuário</h5>
-              <p class="card-text">Crie novos usuários no sistema.</p>
-              <a href="<%= new_user_path %>" class="btn btn-success">Cadastrar</a>
-            </div>
-          </div>
+    <!-- Sidebar -->
+    <nav class="sidebar">
+      <div class="sidebar-sticky text-center">
+        <!-- Logo -->
+        <div class="logo-container py-3">
+          <a href="/" class="logo-link">
+            <img src="<%= asset_path 'logo_png.png' %>" alt="Logo" class="img-fluid" style="max-width: 80%;">
+          </a>
         </div>
-
-        <div class="col-md-6">
-          <div class="card shadow-sm">
-            <div class="card-body text-center">
-              <h5 class="card-title">Lista de Usuários</h5>
-              <p class="card-text">Veja a lista de todos os usuários.</p>
-              <a href="<%= users_path %>" class="btn btn-info">Listar</a>
+        <ul class="nav flex-column mt-3">
+          <li class="nav-item">
+            <a class="nav-link fw-bold" href="<%= unidades_path %>">
+              <svg>...</svg> Unidades
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link fw-bold" href="<%= guardas_path %>">
+              <svg>...</svg> Guardas
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link fw-bold" href="<%= equipes_path %>">
+              <svg>...</svg> Equipes
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link fw-bold" href="<%= armas_path %>">
+              <svg>...</svg> Armas
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link fw-bold" href="<%= movimentacaos_path %>">
+              <svg>...</svg> Movimentações
+            </a>
+          </li>
+          <% if current_user && current_user.admin? %>
+            <li class="nav-item">
+              <a class="nav-link fw-bold" href="<%= users_path %>">
+                <svg>...</svg> Usuários
+              </a>
+            </li>
+          <% end %>
+          <li class="nav-item mt-auto">
+            <%= button_to "Sair", logout_path, method: :delete, class: "btn btn-danger fw-bold w-100 btn-lg" %>
+          </li>
+        </ul>
+      </div>
+    </nav>
+    
+    <!-- Conteúdo principal centralizado -->
+    <main class="main-content d-flex align-items-center justify-content-center min-vh-100 text-center">
+      <div class="content-container">
+        <div class="jumbotron p-5 mb-4 bg-light rounded-3">
+          <h1 class="display-4 fw-bold">Sistema de Controle Bélico (GCM)</h1>
+          <p class="lead">Gerencie unidades, guardas, equipes, armas e movimentações de forma eficiente.</p>
+        </div>
+        
+        <%# Cálculo das contagens e escalonamento das alturas %>
+        <% counts = {
+             movimentacoes: Movimentacao.count,
+             usuarios: User.count,
+             unidades: Unidade.count,
+             equipes: Equipe.count,
+             guardas: Guarda.count,
+             armas: Arma.count
+           } %>
+        <% max_count = counts.values.max || 0 %>
+        <% min_height = 50 %>
+        <% max_height = 200 %>
+        
+        <!-- Dashboard com barras verticais proporcionais -->
+        <div class="dashboard-bars d-flex justify-content-around align-items-end mt-4">
+          <%# Movimentações %>
+          <% height_movimentacoes = max_count > 0 ? (min_height + (counts[:movimentacoes].to_f / max_count) * (max_height - min_height)) : min_height %>
+          <div class="dashboard-bar movimentacoes">
+            <div class="bar-inner" style="height: <%= height_movimentacoes.round %>px;">
+              <span class="bar-count"><%= counts[:movimentacoes] %></span>
             </div>
+            <div class="bar-label">Movimentações</div>
+          </div>
+          
+          <%# Usuários %>
+          <% height_usuarios = max_count > 0 ? (min_height + (counts[:usuarios].to_f / max_count) * (max_height - min_height)) : min_height %>
+          <div class="dashboard-bar usuarios">
+            <div class="bar-inner" style="height: <%= height_usuarios.round %>px;">
+              <span class="bar-count"><%= counts[:usuarios] %></span>
+            </div>
+            <div class="bar-label">Usuários</div>
+          </div>
+          
+          <%# Unidades %>
+          <% height_unidades = max_count > 0 ? (min_height + (counts[:unidades].to_f / max_count) * (max_height - min_height)) : min_height %>
+          <div class="dashboard-bar unidades">
+            <div class="bar-inner" style="height: <%= height_unidades.round %>px;">
+              <span class="bar-count"><%= counts[:unidades] %></span>
+            </div>
+            <div class="bar-label">Unidades</div>
+          </div>
+          
+          <%# Equipes %>
+          <% height_equipes = max_count > 0 ? (min_height + (counts[:equipes].to_f / max_count) * (max_height - min_height)) : min_height %>
+          <div class="dashboard-bar equipes">
+            <div class="bar-inner" style="height: <%= height_equipes.round %>px;">
+              <span class="bar-count"><%= counts[:equipes] %></span>
+            </div>
+            <div class="bar-label">Equipes</div>
+          </div>
+          
+          <%# Guardas %>
+          <% height_guardas = max_count > 0 ? (min_height + (counts[:guardas].to_f / max_count) * (max_height - min_height)) : min_height %>
+          <div class="dashboard-bar guardas">
+            <div class="bar-inner" style="height: <%= height_guardas.round %>px;">
+              <span class="bar-count"><%= counts[:guardas] %></span>
+            </div>
+            <div class="bar-label">Guardas</div>
+          </div>
+          
+          <%# Armas %>
+          <% height_armas = max_count > 0 ? (min_height + (counts[:armas].to_f / max_count) * (max_height - min_height)) : min_height %>
+          <div class="dashboard-bar armas">
+            <div class="bar-inner" style="height: <%= height_armas.round %>px;">
+              <span class="bar-count"><%= counts[:armas] %></span>
+            </div>
+            <div class="bar-label">Armas</div>
           </div>
         </div>
       </div>
-    <% end %> <!-- Fim da verificação para admin -->
-
+    </main>
+  </div>
 </div>

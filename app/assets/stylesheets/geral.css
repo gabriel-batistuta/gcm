@@ -41,7 +41,7 @@ h1 {
 }
 
 /* Centralização dos links de navegação */
-.voltar-unidades, .voltar-home, .voltar {
+.voltar-unidades, .voltar-home {
   margin-top: 20px;
   text-align: center;
 }

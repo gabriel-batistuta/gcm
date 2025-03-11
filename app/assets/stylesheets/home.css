@@ -1,0 +1,143 @@
+/* Reset básico */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: Arial, sans-serif;
+  background-color: #f8f9fa;
+}
+
+/* Sidebar */
+.sidebar {
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  width: 250px;
+  background-color: #343a40;
+  padding-top: 20px;
+  display: flex;
+  flex-direction: column;
+}
+
+.sidebar .nav-link {
+  color: #ffffff;
+  font-size: 16px;
+  padding: 12px 20px;
+  display: flex;
+  align-items: center;
+  text-decoration: none;
+  transition: background 0.3s;
+}
+
+.sidebar .nav-link:hover {
+  background-color: #495057;
+}
+
+.sidebar .nav-link svg {
+  width: 20px;
+  height: 20px;
+  margin-right: 10px;
+}
+
+.sidebar .nav-item:last-child {
+  margin-top: auto;
+  padding: 20px;
+}
+
+.sidebar .btn-danger {
+  width: 100%;
+}
+
+/* Conteúdo principal - centralizado */
+.main-content {
+  margin-left: 250px; /* Compensa a largura da sidebar */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+  width: calc(100% - 250px);
+}
+
+/* Centraliza o conteúdo */
+.content-container {
+  max-width: 800px;
+  width: 100%;
+  text-align: center;
+}
+
+/* Jumbotron */
+.jumbotron {
+  background: #ffffff;
+  padding: 30px;
+  border-radius: 8px;
+  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+/* Dashboard - Barras Verticais */
+.dashboard-bars {
+  display: flex;
+  justify-content: space-around;
+  align-items: flex-end;
+  margin-top: 20px;
+}
+
+.dashboard-bar {
+  width: 100px;
+  margin: 0 10px;
+  text-align: center;
+}
+
+.dashboard-bar .bar-inner {
+  width: 100%;
+  /* A altura agora é definida via inline (calculada pelo Ruby) */
+  border-radius: 5px 5px 0 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #fff;
+  font-weight: bold;
+}
+
+/* Destaque para o número dentro da barra */
+.dashboard-bar .bar-inner .bar-count {
+  font-size: 24px;
+  font-weight: bold;
+  text-shadow: 1px 1px 2px rgba(0,0,0,0.6);
+}
+
+/* Destaque para o nome da barra */
+.dashboard-bar .bar-label {
+  margin-top: 8px;
+  font-size: 16px;
+  font-weight: bold;
+  color: #333;
+}
+
+/* Cores para cada sessão */
+.dashboard-bar.movimentacoes .bar-inner {
+  background-color: #007bff; /* Azul */
+}
+
+.dashboard-bar.usuarios .bar-inner {
+  background-color: #28a745; /* Verde */
+}
+
+.dashboard-bar.unidades .bar-inner {
+  background-color: #ffc107; /* Amarelo */
+}
+
+.dashboard-bar.equipes .bar-inner {
+  background-color: #17a2b8; /* Azul claro */
+}
+
+.dashboard-bar.guardas .bar-inner {
+  background-color: #dc3545; /* Vermelho */
+}
+
+.dashboard-bar.armas .bar-inner {
+  background-color: #6f42c1; /* Roxo */
+}
