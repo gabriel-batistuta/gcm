@@ -58,74 +58,79 @@
         </div>
         
         <%# Cálculo das contagens e escalonamento das alturas %>
-        <% counts = {
-             movimentacoes: Movimentacao.count,
-             usuarios: User.count,
-             unidades: Unidade.count,
-             equipes: Equipe.count,
-             guardas: Guarda.count,
-             armas: Arma.count
-           } %>
-        <% max_count = counts.values.max || 0 %>
+        <% dashboard_counts = {
+            movimentacoes: Movimentacao.count,
+            unidades: Unidade.count,
+            equipes: Equipe.count,
+            guardas: Guarda.count,
+            armas: Arma.count
+          } %>
+        <% if current_user && current_user.admin? %>
+          <% dashboard_counts[:usuarios] = User.count %>
+        <% end %>
+
+        <% max_count = dashboard_counts.values.max || 0 %>
         <% min_height = 50 %>
         <% max_height = 200 %>
-        
-        <!-- Dashboard com barras verticais proporcionais -->
+
         <div class="dashboard-bars d-flex justify-content-around align-items-end mt-4">
           <%# Movimentações %>
-          <% height_movimentacoes = max_count > 0 ? (min_height + (counts[:movimentacoes].to_f / max_count) * (max_height - min_height)) : min_height %>
+          <% height_movimentacoes = max_count > 0 ? (min_height + (dashboard_counts[:movimentacoes].to_f / max_count) * (max_height - min_height)) : min_height %>
           <div class="dashboard-bar movimentacoes">
             <div class="bar-inner" style="height: <%= height_movimentacoes.round %>px;">
-              <span class="bar-count"><%= counts[:movimentacoes] %></span>
+              <span class="bar-count"><%= dashboard_counts[:movimentacoes] %></span>
             </div>
             <div class="bar-label">Movimentações</div>
           </div>
-          
-          <%# Usuários %>
-          <% height_usuarios = max_count > 0 ? (min_height + (counts[:usuarios].to_f / max_count) * (max_height - min_height)) : min_height %>
-          <div class="dashboard-bar usuarios">
-            <div class="bar-inner" style="height: <%= height_usuarios.round %>px;">
-              <span class="bar-count"><%= counts[:usuarios] %></span>
+
+          <%# Renderiza a barra de Usuários somente para administradores %>
+          <% if current_user && current_user.admin? %>
+            <% height_usuarios = max_count > 0 ? (min_height + (dashboard_counts[:usuarios].to_f / max_count) * (max_height - min_height)) : min_height %>
+            <div class="dashboard-bar usuarios">
+              <div class="bar-inner" style="height: <%= height_usuarios.round %>px;">
+                <span class="bar-count"><%= dashboard_counts[:usuarios] %></span>
+              </div>
+              <div class="bar-label">Usuários</div>
             </div>
-            <div class="bar-label">Usuários</div>
-          </div>
-          
+          <% end %>
+
           <%# Unidades %>
-          <% height_unidades = max_count > 0 ? (min_height + (counts[:unidades].to_f / max_count) * (max_height - min_height)) : min_height %>
+          <% height_unidades = max_count > 0 ? (min_height + (dashboard_counts[:unidades].to_f / max_count) * (max_height - min_height)) : min_height %>
           <div class="dashboard-bar unidades">
             <div class="bar-inner" style="height: <%= height_unidades.round %>px;">
-              <span class="bar-count"><%= counts[:unidades] %></span>
+              <span class="bar-count"><%= dashboard_counts[:unidades] %></span>
             </div>
             <div class="bar-label">Unidades</div>
           </div>
-          
+
           <%# Equipes %>
-          <% height_equipes = max_count > 0 ? (min_height + (counts[:equipes].to_f / max_count) * (max_height - min_height)) : min_height %>
+          <% height_equipes = max_count > 0 ? (min_height + (dashboard_counts[:equipes].to_f / max_count) * (max_height - min_height)) : min_height %>
           <div class="dashboard-bar equipes">
             <div class="bar-inner" style="height: <%= height_equipes.round %>px;">
-              <span class="bar-count"><%= counts[:equipes] %></span>
+              <span class="bar-count"><%= dashboard_counts[:equipes] %></span>
             </div>
             <div class="bar-label">Equipes</div>
           </div>
-          
+
           <%# Guardas %>
-          <% height_guardas = max_count > 0 ? (min_height + (counts[:guardas].to_f / max_count) * (max_height - min_height)) : min_height %>
+          <% height_guardas = max_count > 0 ? (min_height + (dashboard_counts[:guardas].to_f / max_count) * (max_height - min_height)) : min_height %>
           <div class="dashboard-bar guardas">
             <div class="bar-inner" style="height: <%= height_guardas.round %>px;">
-              <span class="bar-count"><%= counts[:guardas] %></span>
+              <span class="bar-count"><%= dashboard_counts[:guardas] %></span>
             </div>
             <div class="bar-label">Guardas</div>
           </div>
-          
+
           <%# Armas %>
-          <% height_armas = max_count > 0 ? (min_height + (counts[:armas].to_f / max_count) * (max_height - min_height)) : min_height %>
+          <% height_armas = max_count > 0 ? (min_height + (dashboard_counts[:armas].to_f / max_count) * (max_height - min_height)) : min_height %>
           <div class="dashboard-bar armas">
             <div class="bar-inner" style="height: <%= height_armas.round %>px;">
-              <span class="bar-count"><%= counts[:armas] %></span>
+              <span class="bar-count"><%= dashboard_counts[:armas] %></span>
             </div>
             <div class="bar-label">Armas</div>
           </div>
         </div>
+
       </div>
     </main>
   </div>

@@ -191,9 +191,9 @@ td:last-child {
     transition: all 0.3s ease;
 }
 
-.btn-sub {
+/* .btn-sub { */
     
-}
+/* } */
 
 /* Efeito de foco para os botões */
 .table td .btn:hover {
